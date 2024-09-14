@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BusTimetableScreen extends StatelessWidget {
+  const BusTimetableScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,24 +16,24 @@ class BusTimetableScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: Column(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 30,
                     backgroundImage: NetworkImage(
                         'https://example.com/path/to/profile/image'), // Replace with real image URL
                   ),
-                  SizedBox(height: 8),
-                  Text(
+                  const SizedBox(height: 8),
+                  const Text(
                     'Hey Kamal',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Where you want go?',
                     style: TextStyle(
                       fontSize: 16,
@@ -41,9 +43,9 @@ class BusTimetableScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(16),
@@ -53,59 +55,61 @@ class BusTimetableScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.location_on, color: Colors.black54),
-                      SizedBox(width: 8),
-                      Text(
+                      const Icon(Icons.location_on, color: Colors.black54),
+                      const SizedBox(width: 8),
+                      const Text(
                         'Your Location',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
-                      Spacer(),
-                      Icon(Icons.music_note,
+                      const Spacer(),
+                      const Icon(Icons.music_note,
                           color: Colors.blue), // Add your music icon here
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     children: [
-                      Icon(Icons.location_pin, color: Colors.black54),
-                      SizedBox(width: 8),
-                      Text(
+                      const Icon(Icons.location_pin, color: Colors.black54),
+                      const SizedBox(width: 8),
+                      const Text(
                         'Destination',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     children: [
-                      ChoiceChip(label: Text('Today'), selected: true),
-                      SizedBox(width: 8),
-                      ChoiceChip(label: Text('Tomorrow'), selected: false),
-                      SizedBox(width: 8),
-                      ChoiceChip(label: Text('Other'), selected: false),
+                      const ChoiceChip(label: Text('Today'), selected: true),
+                      const SizedBox(width: 8),
+                      const ChoiceChip(
+                          label: Text('Tomorrow'), selected: false),
+                      const SizedBox(width: 8),
+                      const ChoiceChip(label: Text('Other'), selected: false),
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: Text('Find Buses'),
+                child: const Text('Find Buses'),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView(
-                children: [
+                children: const [
                   MenuItemWidget(
                     icon: Icons.announcement,
                     title: 'News Alerts',
@@ -124,7 +128,7 @@ class BusTimetableScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // Set to the active tab
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -154,7 +158,8 @@ class MenuItemWidget extends StatelessWidget {
   final String title;
   final Color color;
 
-  MenuItemWidget({
+  const MenuItemWidget({
+    super.key,
     required this.icon,
     required this.title,
     required this.color,
