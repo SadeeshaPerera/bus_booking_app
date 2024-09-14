@@ -31,8 +31,7 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(2),
                         child: AspectRatio(
                           aspectRatio: 1,
-                          child:
-                              Image.asset('assets/images/Bus_App_Logo_3.png'),
+                          child: Image.asset('assets/images/round_dp.png'),
                         ),
                       ),
                     ],
