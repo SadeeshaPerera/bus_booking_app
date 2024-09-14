@@ -1,5 +1,6 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:bus_booking_app/BusTimeTableScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -52,6 +53,15 @@ class HomeScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.displaySmall,
             ),
             const SignOutButton(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BusTimetableScreen()),
+                );
+              },
+              child: Text('Bus Timetable'),
+            ),
           ],
         ),
       ),
