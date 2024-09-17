@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_booking_app/BusTimeTableScreen.dart';
@@ -31,8 +32,7 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(2),
                         child: AspectRatio(
                           aspectRatio: 1,
-                          child:
-                              Image.asset('assets/images/Bus_App_Logo_3.png'),
+                          child: Image.asset('assets/images/round_dp.png'),
                         ),
                       ),
                     ],
@@ -61,6 +61,16 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Bus Timetable'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SearchResultsScreen()),
+                );
+              },
+              child: Text('Bus Search Results'),
             ),
           ],
         ),
