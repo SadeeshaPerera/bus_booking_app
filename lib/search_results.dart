@@ -1,62 +1,34 @@
 import 'package:flutter/material.dart';
+import 'search_results_card.dart'; // Import the BusTicketCard widget
 
 class SearchResultsScreen extends StatelessWidget {
+  const SearchResultsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Colombo Fort to Galgamuwa'),
-        centerTitle: true,
+        title: const Text('Home Screen'),
       ),
-      body: ListView.builder(
-        itemCount: 3, // Number of bus options
-        itemBuilder: (context, index) {
-          // Placeholder for actual data
-          final busData = {
-            'departure': '8:30 AM',
-            'arrival': '10:00 AM',
-            'duration': '1h 30m',
-            'type': 'One way',
-            'price': 'LKR 250'
-          };
-
-          return BusOptionCard(busData);
-        },
-      ),
-    );
-  }
-}
-
-class BusOptionCard extends StatelessWidget {
-  final Map<String, String> data;
-
-  BusOptionCard(this.data);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(10.0),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Departure: ${data['departure']}'),
-                Text('Arrival: ${data['arrival']}'),
-              ],
+            const Text(
+              'Welcome to the Home Screen!',
+              style: TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 5),
-            Text('Duration: ${data['duration']}'),
-            Text('Type: ${data['type']}'),
-            Text('Price: ${data['price']}'),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Seat left'),
-            ),
+            const SizedBox(height: 20),
+            BusTicketCard(
+              departureTime: 'defr',
+              arrivalTime: 'df',
+              duration: 'dsf',
+              startLocation: 'dsf',
+              endLocation: 'sdf',
+              tripType: 'df',
+              price: 'casd',
+              seatsLeft: '4',
+            ), // Add the BusTicketCard widget here
           ],
         ),
       ),
