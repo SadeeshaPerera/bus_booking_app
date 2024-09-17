@@ -22,8 +22,7 @@ class BusTimetableScreen extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(
-                        'https://example.com/path/to/profile/image'), // Replace with real image URL
+                    backgroundImage: AssetImage('assets/images/round_dp.png'),
                   ),
                   const SizedBox(height: 8),
                   const Text(
@@ -103,7 +102,10 @@ class BusTimetableScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text('Find Buses'),
+                child: const Text(
+                  'Find Buses',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             const SizedBox(height: 16),
@@ -134,7 +136,7 @@ class BusTimetableScreen extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.confirmation_num),
+            icon: Icon(Icons.confirmation_num_outlined),
             label: 'Tickets',
           ),
           BottomNavigationBarItem(
@@ -142,7 +144,7 @@ class BusTimetableScreen extends StatelessWidget {
             label: 'Routes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.help),
+            icon: Icon(Icons.announcement_outlined),
             label: 'Help',
           ),
         ],
