@@ -7,8 +7,44 @@ class SearchResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          margin: const EdgeInsets.all(8.0), // Add margin here
+          child: AppBar(
+            backgroundColor: Colors.blue[900],
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Text('Colombo Fort',
+                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      overflow: TextOverflow.ellipsis),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                  size: 18.0,
+                ),
+                Text(
+                  'Galanigama',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+            centerTitle: true,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
