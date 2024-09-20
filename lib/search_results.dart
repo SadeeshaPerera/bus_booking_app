@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'bus_tracking_feature/filter_options .dart';
+import 'bus_tracking_feature/filter_options.dart';
 import 'search_results_card.dart'; // Import the BusTicketCard widget
 
 class SearchResultsScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class SearchResultsScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: 120,
             child: AppBar(
               backgroundColor: Colors.blue[900],
@@ -33,7 +33,7 @@ class SearchResultsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
+                        const Expanded(
                           child: Text(
                             'Colombo Fort',
                             style:
@@ -46,7 +46,7 @@ class SearchResultsScreen extends StatelessWidget {
                           color: Colors.white,
                           size: 18.0,
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Text(
                             'Galanigama',
                             style: TextStyle(
@@ -80,8 +80,8 @@ class SearchResultsScreen extends StatelessWidget {
             ),
           ),
           // Add the new text below the AppBar
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
