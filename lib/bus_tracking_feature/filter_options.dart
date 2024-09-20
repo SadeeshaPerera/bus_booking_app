@@ -52,7 +52,7 @@ class FilterChipWidget extends StatelessWidget {
       label: Text(label),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(24),
       ),
     );
   }
