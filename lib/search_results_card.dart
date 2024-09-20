@@ -10,7 +10,8 @@ class BusTicketCard extends StatelessWidget {
   final String price;
   final String seatsLeft;
 
-  BusTicketCard({
+  const BusTicketCard({
+    super.key,
     required this.departureTime,
     required this.arrivalTime,
     required this.duration,
@@ -24,7 +25,7 @@ class BusTicketCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -36,15 +37,33 @@ class BusTicketCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.directions_bus, size: 30.0),
+                const CircleAvatar(
+                  radius: 20.0,
+                  backgroundColor: Color(0xFFEAEBFC),
+                  child: Icon(Icons.directions_bus,
+                      size: 30.0, color: Color.fromARGB(255, 0, 0, 0)),
+                ),
+                const Text(
+                  'NA-1345',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Expanded(
+                  child:
+                      Container(), // This empty container will take up the remaining space
+                ),
                 Text(
-                  seatsLeft,
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  '$seatsLeft Seat(s) left',
+                  style: const TextStyle(
+                    color: Color(0xFFF0635A),
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -52,7 +71,7 @@ class BusTicketCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(departureTime,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold)),
                     Text(startLocation),
                   ],
@@ -60,7 +79,7 @@ class BusTicketCard extends StatelessWidget {
                 Column(
                   children: [
                     Text(duration),
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.circle, size: 5.0),
                         SizedBox(width: 5),
@@ -75,18 +94,19 @@ class BusTicketCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(arrivalTime,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold)),
                     Text(endLocation),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(tripType),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(price,
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                style: const TextStyle(
+                    fontSize: 18.0, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -95,10 +115,12 @@ class BusTicketCard extends StatelessWidget {
 }
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -109,10 +131,10 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Bus Ticket Booking'),
+          title: const Text('Bus Ticket Booking'),
         ),
         body: ListView(
-          children: [
+          children: const [
             BusTicketCard(
               departureTime: '5:31 AM',
               arrivalTime: '7:23 AM',

@@ -8,6 +8,7 @@ class SearchResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFEAEBFC),
       body: Column(
         children: [
           SizedBox(
@@ -95,8 +96,8 @@ class SearchResultsScreen extends StatelessWidget {
               ],
             ),
           ),
-          FilterOptions(), // Add the FilterOptions widget here
-          Expanded(
+          const FilterOptions(), // Add the FilterOptions widget here
+          const Expanded(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
