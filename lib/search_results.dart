@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'bus_tracking_feature/filter_options .dart';
 import 'search_results_card.dart'; // Import the BusTicketCard widget
 
 class SearchResultsScreen extends StatelessWidget {
@@ -94,6 +95,7 @@ class SearchResultsScreen extends StatelessWidget {
               ],
             ),
           ),
+          FilterOptions(), // Add the FilterOptions widget here
           Expanded(
             child: Center(
               child: Column(
