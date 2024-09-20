@@ -17,22 +17,22 @@ class BusTimetableScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            Center(
+            const Center(
               child: Column(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 30,
                     backgroundImage: AssetImage('assets/images/round_dp.png'),
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
+                  SizedBox(height: 8),
+                  Text(
                     'Hey Kamal',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Where you want go?',
                     style: TextStyle(
                       fontSize: 16,
@@ -49,42 +49,41 @@ class BusTimetableScreen extends StatelessWidget {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.location_on, color: Colors.black54),
-                      const SizedBox(width: 8),
-                      const Text(
+                      Icon(Icons.location_on, color: Colors.black54),
+                      SizedBox(width: 8),
+                      Text(
                         'Your Location',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
-                      const Spacer(),
-                      const Icon(Icons.music_note,
+                      Spacer(),
+                      Icon(Icons.music_note,
                           color: Colors.blue), // Add your music icon here
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   Row(
                     children: [
-                      const Icon(Icons.location_pin, color: Colors.black54),
-                      const SizedBox(width: 8),
-                      const Text(
+                      Icon(Icons.location_pin, color: Colors.black54),
+                      SizedBox(width: 8),
+                      Text(
                         'Destination',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   Row(
                     children: [
-                      const ChoiceChip(label: Text('Today'), selected: true),
-                      const SizedBox(width: 8),
-                      const ChoiceChip(
-                          label: Text('Tomorrow'), selected: false),
-                      const SizedBox(width: 8),
-                      const ChoiceChip(label: Text('Other'), selected: false),
+                      ChoiceChip(label: Text('Today'), selected: true),
+                      SizedBox(width: 8),
+                      ChoiceChip(label: Text('Tomorrow'), selected: false),
+                      SizedBox(width: 8),
+                      ChoiceChip(label: Text('Other'), selected: false),
                     ],
                   ),
                 ],

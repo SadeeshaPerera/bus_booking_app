@@ -1,7 +1,7 @@
-import 'package:bus_booking_app/search_results.dart';
+import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bus_booking_app/BusTimeTableScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
