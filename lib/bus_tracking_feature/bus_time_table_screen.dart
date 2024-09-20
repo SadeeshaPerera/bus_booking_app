@@ -54,15 +54,16 @@ class BusTimetableScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.location_on, color: Colors.black54),
+                      Icon(Icons.directions_bus_outlined,
+                          color: Colors.black54),
                       SizedBox(width: 8),
                       Text(
                         'Your Location',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       Spacer(),
-                      Icon(Icons.music_note,
-                          color: Colors.blue), // Add your music icon here
+                      Icon(Icons.arrow_downward_outlined, color: Colors.white),
+                      Icon(Icons.arrow_upward_outlined, color: Colors.white),
                     ],
                   ),
                   SizedBox(height: 12),

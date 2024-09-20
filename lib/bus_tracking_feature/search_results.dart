@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'filter_options.dart';
-import 'search_results_card.dart'; // Import the BusTicketCard widget
+import 'search_results_card.dart';
 
 class SearchResultsScreen extends StatelessWidget {
   const SearchResultsScreen({super.key});
