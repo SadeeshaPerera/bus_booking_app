@@ -6,9 +6,10 @@ class BusTimetableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEEEEEE),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFFEEEEEE),
         toolbarHeight: 0, // Hide the AppBar
       ),
       body: Padding(
@@ -46,7 +47,7 @@ class BusTimetableScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Column(
