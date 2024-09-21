@@ -15,101 +15,130 @@ class BusTimetableScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-            const Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/images/round_dp.png'),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Hey Kamal',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Where you want go?',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const SizedBox(height: 20),
+                  const Center(
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage:
+                              AssetImage('assets/images/round_dp.png'),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Hey Kamal',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Where you want go?',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.directions_bus_outlined,
-                          color: Colors.black54),
-                      SizedBox(width: 8),
-                      Text(
-                        'Your Location',
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      const Row(
+                        children: [
+                          Icon(Icons.directions_bus_outlined,
+                              color: Colors.black54),
+                          SizedBox(width: 8),
+                          Text(
+                            'Your Location',
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.black54),
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_downward_outlined,
+                              color: Colors.white),
+                          Icon(Icons.arrow_upward_outlined,
+                              color: Colors.white),
+                        ],
                       ),
-                      Spacer(),
-                      Icon(Icons.arrow_downward_outlined, color: Colors.white),
-                      Icon(Icons.arrow_upward_outlined, color: Colors.white),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Icon(Icons.location_pin, color: Colors.black54),
-                      SizedBox(width: 8),
-                      Text(
-                        'Destination',
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      const SizedBox(height: 12),
+                      const Row(
+                        children: [
+                          Icon(Icons.location_pin, color: Colors.black54),
+                          SizedBox(width: 8),
+                          Text(
+                            'Destination',
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.black54),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          const ChoiceChip(
+                              label: Text('Today'), selected: true),
+                          const SizedBox(width: 8),
+                          const ChoiceChip(
+                              label: Text('Tomorrow'), selected: false),
+                          const SizedBox(width: 8),
+                          GestureDetector(
+                            onTap: () async {
+                              DateTime? selectedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2101),
+                              );
+                              if (selectedDate != null) {
+                                // Handle the selected date
+                                // print('Selected date: $selectedDate');
+                              }
+                            },
+                            child: const ChoiceChip(
+                              label: Text('Other'),
+                              selected: false,
+                              avatar: Icon(Icons.calendar_today, size: 20),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
-                  Row(
-                    children: [
-                      ChoiceChip(label: Text('Today'), selected: true),
-                      SizedBox(width: 8),
-                      ChoiceChip(label: Text('Tomorrow'), selected: false),
-                      SizedBox(width: 8),
-                      ChoiceChip(label: Text('Other'), selected: false),
-                    ],
+                  const SizedBox(height: 16),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      child: const Text(
+                        'Find Buses',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: const Text(
-                  'Find Buses',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
             Expanded(
               child: ListView(
                 children: const [
