@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'notification_detail_screen.dart'; // Import for NotificationDetailScreen
-import 'critical_notification_screen.dart'; // Import for CriticalNotificationScreen
+import 'notification_detail_screen.dart';
+import 'critical_notification_screen.dart';
 
 class NotificationPanelScreen extends StatelessWidget {
   @override
@@ -27,10 +27,15 @@ class NotificationPanelScreen extends StatelessWidget {
                   icon: Icons.warning,
                   time: '10 mins ago',
                   onTap: () {
+                    // Navigate to the detailed notification
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NotificationDetailScreen(title: 'Route 15A Delay'),
+                        builder: (context) => NotificationDetailScreen(
+                          title: 'Route 15A Delay',
+                          description: 'Expect delays near Central Ave. Buses delayed by 20 minutes.',
+                          imagePath: 'assets/images/bus_delay.png',
+                        ),
                       ),
                     );
                   },
@@ -41,10 +46,15 @@ class NotificationPanelScreen extends StatelessWidget {
                   icon: Icons.error,
                   time: '30 mins ago',
                   onTap: () {
+                    // Navigate to the detailed notification
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CriticalNotificationScreen(),
+                        builder: (context) => NotificationDetailScreen(
+                          title: 'Route 22B Accident',
+                          description: 'An accident occurred on the main highway.',
+                          imagePath: 'assets/images/accident.jpg',
+                        ),
                       ),
                     );
                   },
@@ -52,10 +62,16 @@ class NotificationPanelScreen extends StatelessWidget {
               ],
             ),
           ),
+          // Red button for critical notifications
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, // Set the background color to red
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              ),
               onPressed: () {
+                // Navigate to the critical notifications page
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -63,13 +79,10 @@ class NotificationPanelScreen extends StatelessWidget {
                   ),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+              child: Text(
+                'Critical Notifications',
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              child: Text('Critical Notification'),
             ),
           ),
         ],
