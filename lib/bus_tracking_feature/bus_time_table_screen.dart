@@ -212,24 +212,107 @@ class BusTimetableScreen extends StatelessWidget {
                     SizedBox(
                       height: 400, // Adjust height as needed
                       child: ListView(
-                        children: const [
-                          MenuItemWidget(
-                            imagePath:
-                                'assets/images/news_alert.png', // Set the image path here
-                            title: 'News Alerts',
-                            color: Colors.red,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Container(
+                              height: 90,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade200,
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                  ),
+                                ],
+                              ),
+                              child: Container(
+                                margin: const EdgeInsets.all(15.0),
+                                child: ListTile(
+                                  leading: Image.asset(
+                                    'assets/images/news_alert.png',
+                                    width: 68,
+                                    height: 68,
+                                  ),
+                                  title: const Padding(
+                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                    child: Text('News Alerts',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                          MenuItemWidget(
-                            imagePath:
-                                'assets/images/bus_fares.png', // Set the image path here
-                            title: 'Bus Fares',
-                            color: Colors.orange,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Container(
+                              height: 90,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ]),
+                              child: Container(
+                                margin: const EdgeInsets.all(15.0),
+                                child: ListTile(
+                                  leading: Image.asset(
+                                    'assets/images/bus_fares.png',
+                                    // color: Colors.orange,
+                                    width: 68,
+                                    height: 68,
+                                  ),
+                                  title: const Padding(
+                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                    child: Text(
+                                      'Bus Fares',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                          MenuItemWidget(
-                            imagePath:
-                                'assets/images/support_desk.png', // Set the image path here
-                            title: 'Support Desk',
-                            color: Colors.orange,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Container(
+                              height: 90,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade200,
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                  ),
+                                ],
+                              ),
+                              child: Container(
+                                margin: const EdgeInsets.all(15.0),
+                                child: ListTile(
+                                  leading: Image.asset(
+                                    'assets/images/support_desk.png',
+                                    width: 68,
+                                    height: 68,
+                                  ),
+                                  title: const Padding(
+                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                    child: Text('Support Desk',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -263,47 +346,6 @@ class BusTimetableScreen extends StatelessWidget {
         ],
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-      ),
-    );
-  }
-}
-
-class MenuItemWidget extends StatelessWidget {
-  final String imagePath; // Add imagePath parameter
-  final String title;
-  final Color color;
-  final double height;
-
-  const MenuItemWidget({
-    super.key,
-    required this.imagePath,
-    required this.title,
-    required this.color,
-    this.height = 90,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        height: height,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade200,
-              spreadRadius: 2,
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        child: ListTile(
-          leading: Image.asset(imagePath,
-              width: 24, height: 24), // Use Image.asset instead of Icon
-          title: Text(title),
-        ),
       ),
     );
   }
