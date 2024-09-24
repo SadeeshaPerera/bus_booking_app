@@ -50,6 +50,7 @@ class BusTimetableScreen extends StatelessWidget {
                                   'Where you want go?',
                                   style: TextStyle(
                                     fontSize: 16,
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -69,7 +70,7 @@ class BusTimetableScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
+                                          color: Colors.grey.withOpacity(0.2),
                                           spreadRadius: 2,
                                           blurRadius: 5,
                                           offset: const Offset(0,
@@ -99,7 +100,7 @@ class BusTimetableScreen extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(
-                                      height: 40), // Space for the CircleAvatar
+                                      height: 9), // Space for the CircleAvatar
                                   Container(
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
@@ -107,7 +108,7 @@ class BusTimetableScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
+                                          color: Colors.grey.withOpacity(0.2),
                                           spreadRadius: 2,
                                           blurRadius: 5,
                                           offset: const Offset(0,
@@ -138,7 +139,8 @@ class BusTimetableScreen extends StatelessWidget {
                                 ],
                               ),
                               const Positioned(
-                                top: 30, // Adjust the position as needed
+                                top: 30,
+                                right: 15, // Adjust the position as needed
                                 child: CircleAvatar(
                                   radius: 20,
                                   backgroundColor: Colors.blue,
@@ -191,11 +193,12 @@ class BusTimetableScreen extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 backgroundColor: Colors.blue,
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 32, vertical: 16),
+                                    horizontal: 72, vertical: 6),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(3),
                                 ),
                               ),
                               child: const Text(
