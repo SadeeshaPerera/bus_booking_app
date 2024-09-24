@@ -1,3 +1,5 @@
+import 'package:bus_booking_app/elevator_screen.dart';
+import 'package:bus_booking_app/notification_panel_screen.dart';
 import 'package:bus_booking_app/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +73,26 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Bus Search Results'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ElevatorScreen()),
+                );
+              },
+              child: Text('Go to Elevator'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          NotificationPanelScreen()), // Navigate to Notification Panel
+                );
+              },
+              child: Text('Go to Notifications'),
             ),
           ],
         ),
