@@ -217,6 +217,11 @@ class BusTimetableScreen extends StatelessWidget {
                       title: 'Bus Fares',
                       color: Colors.orange,
                     ),
+                    MenuItemWidget(
+                      icon: Icons.support_agent,
+                      title: 'Support Desk',
+                      color: Colors.orange,
+                    ),
                   ],
                 ),
               ),
@@ -255,12 +260,14 @@ class MenuItemWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final Color color;
+  final double height;
 
   const MenuItemWidget({
     super.key,
     required this.icon,
     required this.title,
     required this.color,
+    this.height = 90,
   });
 
   @override
@@ -268,6 +275,7 @@ class MenuItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
+        height: height,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
