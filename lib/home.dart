@@ -2,6 +2,7 @@ import 'package:bus_booking_app/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_booking_app/BusTimeTableScreen.dart';
+import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -71,6 +72,15 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Bus Search Results'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SampleRoutePage()),
+                );
+              },
+              child: const Text('Bus seat booking'),
             ),
           ],
         ),
