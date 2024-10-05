@@ -20,7 +20,12 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
   File? _selectedImage; // Store the selected image
 
   // List of routes (dummy data)
-  final List<String> routes = ['Route 1', 'Route 2', 'Route 3', 'Route 4'];
+  final List<String> routes = [
+    'Colombo - Kandy',
+    'Galle - Colombo',
+    'Kandy - Jaffna',
+    'Matara - Colombo'
+  ];
 
   final ImagePicker _picker = ImagePicker(); // Initialize image picker
 
@@ -84,10 +89,11 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 12.0, horizontal: 16.0),
                   filled: true,
-                  fillColor: Colors.purple.shade50,
+                  fillColor: Colors.grey.shade200, // Changed to grey background
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  prefixIcon: const Icon(Icons.directions_bus, color: Color.fromARGB(255, 15, 15, 15)), // Bus icon added
                 ),
                 hint: const Text('Select route'),
                 value: selectedRoute,
@@ -109,22 +115,22 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
                   _selectDate(context); // Open date picker
                 },
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
-                    color: Colors.purple.shade50, // Light purple background
+                    color: Colors.grey.shade200, // Changed to grey background
                     borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey.shade400), // Added border
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today, color: Colors.purple),
+                      const Icon(Icons.calendar_today, color: Color.fromARGB(255, 15, 15, 15)),
                       const SizedBox(width: 12),
                       Text(
                         selectedDate != null
                             ? DateFormat('dd/MM/yyyy').format(selectedDate!)
                             : 'Select date',
                         style: const TextStyle(
-                            fontSize: 16, color: Colors.purple),
+                            fontSize: 16, color: Color.fromARGB(255, 7, 7, 7)),
                       ),
                     ],
                   ),
@@ -159,8 +165,7 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
               GestureDetector(
                 onTap: _pickImage, // Call _pickImage when tapped
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(12),
@@ -240,13 +245,9 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
           ),
         ),
       ),
+      
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3, // Set the active tab to "Help"
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pop(context); // Go back to home
-          }
-        },
+        currentIndex: 3, // Set active tab
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -267,7 +268,8 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
         ],
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-      ),
+      ), 
+
     );
   }
 }

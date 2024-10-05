@@ -2,6 +2,7 @@ import 'package:bus_booking_app/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_booking_app/BusTimeTableScreen.dart';
+import 'package:bus_booking_app/AnnouncementScreen.dart'; // Import the AnnouncementScreen
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -71,6 +72,16 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Bus Search Results'),
+            ),
+            ElevatedButton( // New button for Missing Items
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AnnouncementScreen()), // Navigate to AnnouncementScreen
+                );
+              },
+              child: Text('Missing Items'),
             ),
           ],
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'AnnouncementScreen.dart'; // Import the Announcement Screen
 
 class BusTimetableScreen extends StatelessWidget {
   const BusTimetableScreen({super.key});
@@ -62,7 +61,8 @@ class BusTimetableScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       const Spacer(),
-                      const Icon(Icons.music_note, color: Colors.blue),
+                      const Icon(Icons.music_note,
+                          color: Colors.blue), // Add your music icon here
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -81,7 +81,8 @@ class BusTimetableScreen extends StatelessWidget {
                     children: [
                       const ChoiceChip(label: Text('Today'), selected: true),
                       const SizedBox(width: 8),
-                      const ChoiceChip(label: Text('Tomorrow'), selected: false),
+                      const ChoiceChip(
+                          label: Text('Tomorrow'), selected: false),
                       const SizedBox(width: 8),
                       const ChoiceChip(label: Text('Other'), selected: false),
                     ],
@@ -129,16 +130,6 @@ class BusTimetableScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // Set to the active tab
-        onTap: (index) {
-          if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AnnouncementScreen(),
-              ),
-            );
-          }
-        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

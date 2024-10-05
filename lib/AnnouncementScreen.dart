@@ -32,8 +32,10 @@ class AnnouncementScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Instructions Box with increased size
             Container(
-              padding: const EdgeInsets.all(16.0),
+              width: double.infinity, // Expands to full width
+              padding: const EdgeInsets.all(24.0), // Increased padding
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(16),
@@ -42,19 +44,20 @@ class AnnouncementScreen extends StatelessWidget {
                 children: const [
                   Text(
                     'INSTRUCTIONS',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 30),
                   Text(
                     'Please note that you are responsible for the accuracy of the information you provide in your notice. '
                     'We are not liable for any delays in locating or returning your items.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 18),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 40), // Increase space between box and buttons
+            // Button for "Report Missing Items" with equal size
             ElevatedButton(
               onPressed: () {
                 // Navigate to Report Missing Items Screen
@@ -72,6 +75,7 @@ class AnnouncementScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
+                minimumSize: const Size(250, 50), // Set equal size for both buttons
               ),
               child: const Text(
                 'REPORT MISSING ITEMS',
@@ -79,6 +83,7 @@ class AnnouncementScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+            // Button for "Find Missing Items" with equal size
             ElevatedButton(
               onPressed: () {
                 // Navigate to Find Missing Items Screen
@@ -96,6 +101,7 @@ class AnnouncementScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
+                minimumSize: const Size(250, 50), // Set equal size for both buttons
               ),
               child: const Text(
                 'FIND MISSING ITEMS',
