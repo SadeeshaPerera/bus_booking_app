@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/AnnouncementScreen.dart';
 import 'package:flutter/material.dart';
 
 class BusTimetableScreen extends StatelessWidget {
@@ -329,6 +330,16 @@ class BusTimetableScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // Set to the active tab
+        onTap: (index) {
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AnnouncementScreen(),
+              ),
+            );
+          }
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
