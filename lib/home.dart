@@ -52,75 +52,78 @@ class HomeScreen extends StatelessWidget {
         ],
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Image.asset('assets/images/Bus_App_Logo_3.png'),
-            Text(
-              'Welcome!',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SignOutButton(),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BusTimetableScreen()),
-                );
-              },
-              child: Text('Bus Timetable'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SearchResultsScreen()),
-                );
-              },
-              child: Text('Bus Search Results'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ElevatorScreen()),
-                );
-              },
-              child: Text('Go to Elevator'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          AnnouncementScreen()), // Navigate to AnnouncementScreen
-                );
-              },
-              child: Text('Missing Items'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          NotificationPanelScreen()), // Navigate to Notification Panel
-                );
-              },
-              child: Text('Go to Notifications'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SampleRoutePage()),
-                );
-              },
-              child: const Text('Bus seat booking'),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/Bus_App_Logo_3.png'),
+              Text(
+                'Welcome!',
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              const SignOutButton(),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BusTimetableScreen()),
+                  );
+                },
+                child: Text('Bus Timetable'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SearchResultsScreen()),
+                  );
+                },
+                child: Text('Bus Search Results'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ElevatorScreen()),
+                  );
+                },
+                child: Text('Go to Elevator'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            AnnouncementScreen()), // Navigate to AnnouncementScreen
+                  );
+                },
+                child: Text('Missing Items'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            NotificationPanelScreen()), // Navigate to Notification Panel
+                  );
+                },
+                child: Text('Go to Notifications'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SampleRoutePage()),
+                  );
+                },
+                child: const Text('Bus seat booking'),
+              ),
+            ],
+          ),
         ),
       ),
     );
