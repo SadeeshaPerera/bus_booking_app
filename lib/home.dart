@@ -1,10 +1,17 @@
+
+import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
+
+
+import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
+
 import 'package:bus_booking_app/elevator_screen.dart';
 import 'package:bus_booking_app/notification_panel_screen.dart';
-import 'package:bus_booking_app/search_results.dart';
+
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bus_booking_app/BusTimeTableScreen.dart';
+
 import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
