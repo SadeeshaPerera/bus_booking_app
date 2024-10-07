@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
@@ -81,6 +82,16 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Bus Search Results'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RouteDetailsScreen()),
+                  );
+                },
+                child: Text('Route Details'),
               ),
               ElevatedButton(
                 onPressed: () {
