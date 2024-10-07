@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_panel_screen.dart'; // Import the NotificationPanelScreen
 
 class BusTimetableScreen extends StatelessWidget {
   const BusTimetableScreen({super.key});
@@ -97,7 +98,7 @@ class BusTimetableScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -111,16 +112,28 @@ class BusTimetableScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Expanded(
               child: ListView(
-                children: const [
+                children: [
                   MenuItemWidget(
                     icon: Icons.announcement,
                     title: 'News Alerts',
                     color: Colors.red,
+                    onTap: () {
+                      // Navigate to NotificationPanelScreen when tapped
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NotificationPanelScreen(),
+                        ),
+                      );
+                    },
                   ),
                   MenuItemWidget(
                     icon: Icons.monetization_on,
                     title: 'Bus Fares',
                     color: Colors.orange,
+                    onTap: () {
+                      // No navigation for now
+                    },
                   ),
                 ],
               ),
@@ -155,37 +168,43 @@ class BusTimetableScreen extends StatelessWidget {
   }
 }
 
+// Define MenuItemWidget here for simple and reusable widgets
 class MenuItemWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final Color color;
+  final VoidCallback onTap; // Add onTap for navigation
 
   const MenuItemWidget({
     super.key,
     required this.icon,
     required this.title,
     required this.color,
+    required this.onTap, // Add onTap for handling tap events
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade200,
-              spreadRadius: 2,
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        child: ListTile(
-          leading: Icon(icon, color: color),
-          title: Text(title),
+      child: GestureDetector(
+        onTap: onTap, // Trigger the onTap when the widget is tapped
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade200,
+                spreadRadius: 2,
+                blurRadius: 5,
+              ),
+            ],
+          ),
+          child: ListTile(
+            leading: Icon(icon, color: color),
+            title: Text(title),
+          ),
         ),
       ),
     );

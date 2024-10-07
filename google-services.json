@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "561754184188",
+    "project_id": "csse-project-healthcare-app",
+    "storage_bucket": "csse-project-healthcare-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561754184188:android:eefaee100dcbf185eefa79",
+        "android_client_info": {
+          "package_name": "com.example.smart_healthcare_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYZTlNBqI3gIQwvnd8atdcQoBM3JHPH88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

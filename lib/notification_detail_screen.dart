@@ -1,45 +1,45 @@
 import 'package:flutter/material.dart';
 
-class NotificationDetailScreen extends StatelessWidget {
-  final String title; // Notification title
-  final String description; // Notification description
-  final String imagePath; // Path to the notification image
+class NotificationDetail extends StatelessWidget {
+  final String title;
+  final String description;
+  final Color color;
 
-  NotificationDetailScreen({
+  NotificationDetail({
     required this.title,
     required this.description,
-    required this.imagePath,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification Detail'), // Set the title here
-        backgroundColor: Colors.blue[900], // Match the color of the notification panel
+        title: Text('Notification Detail'),
+        backgroundColor: color,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Image.asset(imagePath), // Display the notification image
-              SizedBox(height: 10),
-              Text(
-                title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            Text(description, textAlign: TextAlign.center),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Back To Notification'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color, // Use backgroundColor instead of primary
               ),
-              SizedBox(height: 10),
-              Text(description),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context); // Go back to notification screen
-                },
-                child: Text('Back to Notifications'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

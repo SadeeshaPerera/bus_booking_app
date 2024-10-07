@@ -1,9 +1,10 @@
-import 'package:bus_booking_app/elevator_screen.dart';
-import 'package:bus_booking_app/notification_panel_screen.dart';
+// lib/home.dart
 import 'package:bus_booking_app/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_booking_app/BusTimeTableScreen.dart';
+import 'package:bus_booking_app/elevator_screen.dart'; // Ensure this import is present
+import 'package:bus_booking_app/notification_panel.dart'; // Add this import
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<ProfileScreen>(
+                MaterialPageRoute(
                   builder: (context) => ProfileScreen(
                     appBar: AppBar(
                       title: const Text('User Profile'),
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                     actions: [
                       SignedOutAction((context) {
                         Navigator.of(context).pop();
-                      })
+                      }),
                     ],
                     children: [
                       const Divider(),
@@ -42,14 +43,14 @@ class HomeScreen extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
         automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/Bus_App_Logo_3.png'),
             Text(
               'Welcome!',
               style: Theme.of(context).textTheme.displaySmall,
@@ -68,8 +69,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => SearchResultsScreen()),
+                  MaterialPageRoute(builder: (context) => SearchResultsScreen()),
                 );
               },
               child: Text('Bus Search Results'),
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ElevatorScreen()),
+                  MaterialPageRoute(builder: (context) => ElevatorScreen()), // This should work now
                 );
               },
               child: Text('Go to Elevator'),
@@ -87,9 +87,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          NotificationPanelScreen()), // Navigate to Notification Panel
+                  MaterialPageRoute(builder: (context) => NotificationPanelScreen()), // This should work now
                 );
               },
               child: Text('Go to Notifications'),
