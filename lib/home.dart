@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
@@ -84,6 +85,16 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Bus Search Results'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ActiveAlarmScreen()),
+                  );
+                },
+                child: const Text('Active Alarm Section'),
               ),
               ElevatedButton(
                 onPressed: () {
