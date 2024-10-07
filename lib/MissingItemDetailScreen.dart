@@ -13,7 +13,7 @@ class MissingItemDetailScreen extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.6, // Adjust height as needed
       child: Scaffold(
         appBar: AppBar(
-          title: Text(item['title']!),
+          title: const Text('Missing Item'), // Change the title to 'Missing Item'
           leading: IconButton(
             icon: const Icon(Icons.close),
             onPressed: () {
@@ -26,11 +26,100 @@ class MissingItemDetailScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // Display image if available
+              if (item['imageUrl'] != null && item['imageUrl']!.isNotEmpty)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    item['imageUrl']!,
+                    height: 350, // Adjust height as needed
+                    width: 300,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              const SizedBox(height: 16),
+
+              // Row for Title and isFound status
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align title to left and isFound to right
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.location_on, size: 24, color: Colors.grey),
+                      const SizedBox(width: 8),
+                      Text(
+                        item['title']!, // Display the original title
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (item['isFound'] != null)
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white, // White background for outline effect
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 233, 232, 232),
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5), // Shadow color
+                            spreadRadius: 2,
+                            blurRadius: 4,
+                            offset: const Offset(0, 3), // Position of the shadow
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        item['isFound']!,
+                        style: TextStyle(
+                          color: item['isFound'] == 'Found' ? const Color.fromARGB(255, 252, 123, 4) : Colors.red, // Colored text
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              // Row for Date and isFound status
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align date to left and isFound to right
+                children: [
+                  if (item['date'] != null)
+                    Row(
+                      children: [
+                        const Icon(Icons.calendar_today, size: 20, color: Colors.grey),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Date: ${item['date']}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              // Display item details
               Text(
                 item['details']!,
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 16),
+
+              // Contact button
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -38,6 +127,10 @@ class MissingItemDetailScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const ContactScreen()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF5669FF), // Set the button color to blue
+                  foregroundColor: Colors.white,
+                ),
                 child: const Text('Contact'),
               ),
             ],
