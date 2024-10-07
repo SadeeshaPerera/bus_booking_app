@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // For date formatting
+import 'seat_selection_page.dart';
 
 class SelectPassengersPage extends StatefulWidget {
   final DateTime selectedDate;
@@ -110,9 +111,9 @@ class _SelectPassengersPageState extends State<SelectPassengersPage> {
                     color: Color(0xFF3B3B3B),
                   ),
                 ),
-                 SizedBox(
-                        width:
-                            25), // Adjust this value to control the gap between Galle and the arrow
+                SizedBox(
+                    width:
+                        25), // Adjust this value to control the gap between Galle and the arrow
                 Row(
                   children: [
                     Text(
@@ -153,8 +154,8 @@ class _SelectPassengersPageState extends State<SelectPassengersPage> {
                   ],
                 ),
                 SizedBox(
-                        width:
-                            25), // Adjust this value to control the gap between Galle and the arrow
+                    width:
+                        25), // Adjust this value to control the gap between Galle and the arrow
                 Text(
                   '11.00 AM',
                   style: TextStyle(
@@ -239,10 +240,16 @@ class _SelectPassengersPageState extends State<SelectPassengersPage> {
               height: 62,
               child: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                        content:
-                            Text("You selected $_passengerCount passengers.")),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SeatSelectionPage(
+                        selectedDate:
+                            widget.selectedDate, // Pass the selected date
+                        numberOfPassengers:
+                            _passengerCount, // Pass the passenger count
+                      ),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
