@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart'; // For formatting dates
+import 'select_passengers_page.dart'; // Import the page to navigate to
 
 class DatePickerPage extends StatefulWidget {
   final DateTime routeDepartureTime; // Pass the route's departure time when navigating
@@ -139,7 +140,16 @@ class _DatePickerPageState extends State<DatePickerPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_selectedDay != null) {
-                            Navigator.of(context).pop(_selectedDay);
+                            // Add your logic to store selected date in booking collection
+                            print("Selected Date: $_selectedDay");
+
+                            // Navigate to the next page (e.g. SelectPassengersPage)
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SelectPassengersPage(selectedDate: _selectedDay!),
+                              ),
+                            );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text("Please select a date!")),
