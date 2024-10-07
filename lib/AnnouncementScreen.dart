@@ -9,7 +9,8 @@ class AnnouncementScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue, // Blue background for the AppBar
+        backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
+        foregroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -35,23 +36,33 @@ class AnnouncementScreen extends StatelessWidget {
             // Instructions Box with increased size
             Container(
               width: double.infinity, // Expands to full width
-              padding: const EdgeInsets.all(24.0), // Increased padding
+              height: 350.0,
+              padding: const EdgeInsets.all(30.0), // Increased padding
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: const Color.fromARGB(255, 255, 254, 254),
                 borderRadius: BorderRadius.circular(16),
+
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3), // Shadow color
+                    offset: const Offset(0, 2), // Offset of the shadow
+                    blurRadius: 4, // Blur radius of the shadow
+                    spreadRadius: 2, // Spread radius of the shadow
+                  ),
+                ],
               ),
               child: Column(
                 children: const [
                   Text(
                     'INSTRUCTIONS',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 40),
                   Text(
                     'Please note that you are responsible for the accuracy of the information you provide in your notice. '
                     'We are not liable for any delays in locating or returning your items.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 19),
                   ),
                 ],
               ),
@@ -69,7 +80,8 @@ class AnnouncementScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color(0xFF5669FF), // Set the button color
+                foregroundColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                 shape: RoundedRectangleBorder(
@@ -95,7 +107,8 @@ class AnnouncementScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color(0xFF5669FF), // Set the button color
+                foregroundColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                 shape: RoundedRectangleBorder(
