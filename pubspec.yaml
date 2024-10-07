@@ -76,6 +76,10 @@ flutter:
     - assets/images/bus_fares.png
     - assets/images/support_desk.png
     - assets/images/mapbg.png
+    - assets/images/popular_routes_1.png
+    - assets/images/popular_routes_2.png
+    - assets/images/popular_routes_3.png
+    - assets/images/popular_routes_4.png
 
     - assets/images/calendar.png
 

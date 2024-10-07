@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
@@ -82,6 +83,16 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Bus Search Results'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PopularRouteDetailsScreen()),
+                  );
+                },
+                child: Text('Popular Routes'),
               ),
               ElevatedButton(
                 onPressed: () {
