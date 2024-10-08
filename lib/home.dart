@@ -6,7 +6,6 @@ import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 
-import 'package:bus_booking_app/elevator_screen.dart';
 import 'package:bus_booking_app/notification_panel_screen.dart';
 
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
@@ -125,15 +124,6 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Route Details'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ElevatorScreen()),
-                  );
-                },
-                child: Text('Go to Elevator'),
               ),
               ElevatedButton(
                 onPressed: () {
