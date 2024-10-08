@@ -4,8 +4,13 @@ import 'seat_selection_page.dart';
 
 class SelectPassengersPage extends StatefulWidget {
   final DateTime selectedDate;
+  final String routeId; // Route ID passed from the previous page
+  final double seatPrice; // Seat price passed from the previous page
 
-  SelectPassengersPage({required this.selectedDate});
+  SelectPassengersPage({
+    required this.selectedDate,
+    required this.routeId,
+    required this.seatPrice,});
 
   @override
   _SelectPassengersPageState createState() => _SelectPassengersPageState();
@@ -248,6 +253,8 @@ class _SelectPassengersPageState extends State<SelectPassengersPage> {
                             widget.selectedDate, // Pass the selected date
                         numberOfPassengers:
                             _passengerCount, // Pass the passenger count
+                        routeId: widget.routeId, // Pass routeId to next page
+                        seatPrice: widget.seatPrice, // Pass seatPrice to next page
                       ),
                     ),
                   );

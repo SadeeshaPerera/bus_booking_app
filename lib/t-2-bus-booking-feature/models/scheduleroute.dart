@@ -45,7 +45,7 @@ class ScheduleRoute {
       destinationLocation: data['destinationLocation'],
       departureTime: data['departureTime'],
       destinationTime: data['destinationTime'],
-      seatPrice: data['seatPrice'],
+      seatPrice: (data['seatPrice'] as num).toDouble(),
       busNumber: data['busNumber'],
       journeyDuration: data['journeyDuration'],
     );

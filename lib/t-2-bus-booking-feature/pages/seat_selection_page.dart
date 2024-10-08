@@ -5,10 +5,14 @@ import 'confirm_booking_page.dart';
 class SeatSelectionPage extends StatefulWidget {
   final DateTime selectedDate;
   final int numberOfPassengers;
+  final String routeId; // Route ID passed from the previous page
+  final double seatPrice; // Seat price passed from the previous page
 
   SeatSelectionPage({
     required this.selectedDate,
     required this.numberOfPassengers,
+    required this.routeId,
+    required this.seatPrice,
   });
 
   @override
@@ -129,8 +133,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0), // Add horizontal padding
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 14.0),
@@ -185,7 +188,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'LKR 2000',
+                          'LKR ${widget.seatPrice * widget.numberOfPassengers}', // Dynamically calculate price
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -220,7 +223,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                         SizedBox(width: 25),
                         _buildLegend('Available', Colors.grey[300]!),
                         SizedBox(width: 25),
-                        _buildLegend('Your Seat', Colors.blue),
+                        _buildLegend('Your Seat', Color(0xFF5669FF)),
                       ],
                     ),
                     SizedBox(height: 30),
@@ -260,7 +263,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                                   height: 45,
                                   decoration: BoxDecoration(
                                     color: isSelected
-                                        ? Colors.blue
+                                        ? Color(0xFF5669FF)
                                         : status == 'available'
                                             ? Colors.grey[300]
                                             : Colors.red,
@@ -287,12 +290,31 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                 child: ElevatedButton(
                   onPressed: selectedSeatCount == widget.numberOfPassengers
                       ? () {
-                          // Proceed with the seat selection
+                          double totalPrice =
+                              widget.seatPrice * widget.numberOfPassengers;
+
+                          // Debugging Prints
+                          print("Selected Seats: $selectedSeatIdentifiers");
+                          print("Total Price: $totalPrice");
+                          print("Route ID: ${widget.routeId}");
+                          print("Selected Date: ${widget.selectedDate}");
+                          print("Selected seat count: $selectedSeatCount");
+                          print(
+                              "Expected passengers: ${widget.numberOfPassengers}");
+
+                          // Navigate to ConfirmBookingPage with required data
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ConfirmBookingPage(
-                                selectedSeats: selectedSeatIdentifiers,
+                                selectedDate: widget
+                                    .selectedDate, // Pass the selected date
+                                selectedSeats:
+                                    selectedSeatIdentifiers, // Pass selected seats
+                                totalPrice:
+                                    totalPrice, // Pass the calculated total price
+                                routeId: widget
+                                    .routeId, // Pass route ID to the next page
                               ),
                             ),
                           );
@@ -303,7 +325,6 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40),
                     ),
-                    elevation: 8,
                   ),
                   child: Text(
                     'PROCEED',
