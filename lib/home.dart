@@ -117,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SampleRoutePage()),
+                    MaterialPageRoute(builder: (context) => ScheduleRoutePage()),
                   );
                 },
                 child: const Text('Bus seat booking'),
