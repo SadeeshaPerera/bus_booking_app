@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/FindMissingItemsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:image_picker/image_picker.dart'; // For image picker
@@ -16,7 +17,7 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
   String? selectedRoute;
   DateTime? selectedDate;
   bool isFound = false; // For found checkbox state
-  bool isMissing = true; // For missing checkbox state
+  bool isMissing = false; // For missing checkbox state
 
   File? _selectedImage; // Store the selected image
   final TextEditingController _descriptionController = TextEditingController(); // Controller for description
@@ -79,34 +80,48 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
   }
 
   // Function to submit report to Firestore
-  
   Future<void> _submitReport() async {
     if (selectedRoute != null && selectedDate != null && _descriptionController.text.isNotEmpty && _selectedImage != null) {
-      print("Preparing to submit report..."); // Debugging line
       
       // Call _uploadImage and wait for it to complete
       String? imageUrl = await _uploadImage();
-      print("Image URL obtained: $imageUrl"); // Debugging line
-
+      
       Map<String, dynamic> reportData = {
         'route': selectedRoute,
         'date': selectedDate,
         'description': _descriptionController.text,
         'isFound': isFound,
         'isMissing': isMissing,
-        'imageUrl': imageUrl, // Set imageUrl here
+        'imageUrl': imageUrl, 
       };
 
       try {
         await FirebaseFirestore.instance.collection('missing_items_reports').add(reportData);
-        print("Report submitted: $reportData"); // Debugging line
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Report submitted successfully!')),
+        
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: const Text('Report submitted successfully!'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                    // Navigate to the next screen
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const FindMissingItemsScreen()),
+                    );
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
         );
-        // Clear the form fields
+
         _clearForm();
       } catch (e) {
-        print("Error submitting report: $e"); // Debugging line
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Error submitting report!')),
         );
@@ -118,7 +133,6 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
       );
     }
   }
-
 
   // Function to clear form fields
   void _clearForm() {
@@ -135,26 +149,45 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
-        foregroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context); // Navigate back
-          },
-        ),
-        title: const Text('Report Missing Items'),
-        centerTitle: true, // Center the title
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(90.0), // Adjust height as needed
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)), // Rounded corners
+          child: AppBar(
+            backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
+            foregroundColor: Colors.white,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 20.0), // Adjust left and top padding for the back button
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context); // Navigate back
+                },
+              ),
             ),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 20.0), // Adjust top padding for the title
+              child: const Text(
+                'Report Missing Items',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ), 
+              ),
+            ),
+            centerTitle: true, // Center the title
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0, top: 20.0), // Adjust right and top padding for the avatar
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -242,29 +275,40 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
                 'Upload a image',
                 style: TextStyle(fontSize: 16, color: Colors.black87),
               ),
-                Container(
-                  padding: const EdgeInsets.all(12.0), // Padding around the content
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Background color for the box
-                    borderRadius: BorderRadius.circular(8), // Rounded corners
-                    border: Border.all(color: Colors.grey), // Optional border
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center, // Center the content
-                    children: [
-                      Icon(Icons.upload_file, color: Colors.black), // Upload icon
-                      const SizedBox(width: 8), // Space between icon and text
-                      TextButton(
-                        onPressed: _pickImage, // Select an image
-                        child: const Text('Upload Image'),
+              const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Container(
+                      width: 180, // Adjust width as needed
+                      height: 60, // Adjust height as needed
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey),
                       ),
-                    ],
-                  ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.cloud_upload, color: Colors.black, size: 30.0), // Upload icon
+                          const SizedBox(width: 8),
+                          TextButton(
+                            onPressed: _pickImage, // Function to select image
+                            child: const Text('Upload Image'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8), // Space between container and message
+                    _selectedImage == null
+                        ? const Text('No chosen file', style: TextStyle(color: Colors.grey)) // Display message if no image
+                        : Container(), // Display nothing if image is selected
+                  ],
                 ),
                 if (_selectedImage != null) ...[
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 16), // Space between upload section and image
                   Image.file(
-                    _selectedImage!,
+                    _selectedImage!, // Display the selected image
                     height: 100,
                     width: 100,
                     fit: BoxFit.cover,
@@ -310,7 +354,6 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
                 ],
               ),
 
-              
               const SizedBox(height: 16),
               Center(
                 child: ElevatedButton(
@@ -318,8 +361,12 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF5669FF), // Set the button color
                     foregroundColor: Colors.white,
+                    minimumSize: const Size(180, 50), 
                   ),
-                  child: const Text('Submit'),
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
             ],
@@ -351,4 +398,4 @@ class _ReportMissingItemsScreenState extends State<ReportMissingItemsScreen> {
       ),
     );
   }
-}
+}  

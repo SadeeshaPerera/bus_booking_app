@@ -58,11 +58,43 @@ class _FindMissingItemsScreenState extends State<FindMissingItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
-        foregroundColor: Colors.white,
-        title: const Text('Missing Items'),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(90.0), // Adjust height as needed
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)), // Rounded corners
+          child: AppBar(
+            backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
+            foregroundColor: Colors.white,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 20.0), // Adjust left and top padding for the back button
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context); // Navigate back
+                },
+              ),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 20.0), // Adjust top padding for the title
+              child: const Text(
+                'Missing Items',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ), 
+              ),
+            ),
+            centerTitle: true, // Center the title
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0, top: 20.0), // Adjust right and top padding for the avatar
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -83,8 +115,9 @@ class _FindMissingItemsScreenState extends State<FindMissingItemsScreen> {
                   ),
                   child: Row(
                     children: [
+                      const SizedBox(width: 8),
                       const Icon(Icons.directions_bus, size: 24, color: Colors.black),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 2),
                       Expanded(
                         child: DropdownButton<String>(
                           isExpanded: true,
@@ -123,8 +156,9 @@ class _FindMissingItemsScreenState extends State<FindMissingItemsScreen> {
                   ),
                   child: Row(
                     children: [
+                      const SizedBox(width: 8),
                       const Icon(Icons.calendar_today, size: 22, color: Colors.black),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 2),
                       Expanded(
                         child: TextButton(
                           onPressed: () => _selectDate(context),
