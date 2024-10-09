@@ -1,4 +1,5 @@
 import 'package:bus_booking_app/firebase_options.dart';
+import 'package:bus_booking_app/general_screens/app_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'auth_gate.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
       ),
-      home: const AuthGate(),
+      home: AppSplashScreen(),
     );
   }
 }

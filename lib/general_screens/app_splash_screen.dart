@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/general_screens/bus_onboarding_screens.dart';
 import 'package:bus_booking_app/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart'; // For loading indicator
@@ -19,7 +20,8 @@ class _AppSplashScreenState extends State<AppSplashScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-          builder: (context) => HomeScreen()), // Replace with your main screen
+          builder: (context) =>
+              BusOnboardingScreen()), // Replace with your main screen
     );
   }
 

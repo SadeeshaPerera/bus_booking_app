@@ -62,29 +62,15 @@ class HomeScreen extends StatelessWidget {
             children: [
               Image.asset('assets/images/Bus_App_Logo_3.png'),
               Text(
-                'Welcome!',
-                style: Theme.of(context).textTheme.displaySmall,
+                'BGLK',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
               ),
               const SignOutButton(),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AppSplashScreen()),
-                  );
-                },
-                child: Text('Bus Splash Screen'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BusOnboardingScreen()),
-                  );
-                },
-                child: Text('Bus  Onboarding Screen'),
-              ),
+              SizedBox(height: 80),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -93,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => BusTimetableScreen()),
                   );
                 },
-                child: Text('Bus Timetable'),
+                child: Text('Explore'),
               ),
             ],
           ),

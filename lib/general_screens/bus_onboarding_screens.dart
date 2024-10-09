@@ -1,6 +1,6 @@
+import 'package:bus_booking_app/auth_gate.dart';
 import 'package:bus_booking_app/home.dart';
 import 'package:flutter/material.dart';
-// Replace with your main screen import
 
 class BusOnboardingScreen extends StatefulWidget {
   @override
@@ -19,15 +19,15 @@ class _BusOnboardingScreenState extends State<BusOnboardingScreen> {
       "image": "assets/images/Onboarding_image_1.png"
     },
     {
-      "title": "Hastle Free Booking",
+      "title": "Hassle-Free Booking",
       "description":
           "Book your seat in advance and get a quick QR code confirmation. Secure your ride with ease and cancel if needed.",
       "image": "assets/images/Onboarding_image_2.png"
     },
     {
-      "title": "Help and Support ",
+      "title": "Help and Support",
       "description":
-          "Lost something? Report missing items or check if someone found them. Stay connected with others",
+          "Lost something? Report missing items or check if someone found them. Stay connected with others.",
       "image": "assets/images/Onboarding_image_3.png"
     },
     {
@@ -47,8 +47,7 @@ class _BusOnboardingScreenState extends State<BusOnboardingScreen> {
   void _navigateToMainScreen() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-          builder: (context) => HomeScreen()), // Replace with your main screen
+      MaterialPageRoute(builder: (context) => AuthGate()),
     );
   }
 
@@ -157,32 +156,47 @@ class _BusOnboardingScreenState extends State<BusOnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                onPageChanged: _onPageChanged,
-                itemCount: onboardingData.length,
-                itemBuilder: (context, index) =>
-                    _buildPageContent(onboardingData[index]),
+            Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    onPageChanged: _onPageChanged,
+                    itemCount: onboardingData.length,
+                    itemBuilder: (context, index) =>
+                        _buildPageContent(onboardingData[index]),
+                  ),
+                ),
+                _currentPage == onboardingData.length - 1
+                    ? ElevatedButton(
+                        onPressed: _navigateToMainScreen,
+                        child: Text("Get Started"),
+                      )
+                    : ElevatedButton(
+                        onPressed: () {
+                          _pageController.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.ease,
+                          );
+                        },
+                        child: Text("Next"),
+                      ),
+                SizedBox(height: 20),
+              ],
+            ),
+            Positioned(
+              top: 10,
+              right: 10,
+              child: TextButton(
+                onPressed: _navigateToMainScreen,
+                child: Text(
+                  "Skip",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
-            _currentPage == onboardingData.length - 1
-                ? ElevatedButton(
-                    onPressed: _navigateToMainScreen,
-                    child: Text("Get Started"),
-                  )
-                : ElevatedButton(
-                    onPressed: () {
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.ease,
-                      );
-                    },
-                    child: Text("Next"),
-                  ),
-            SizedBox(height: 20),
           ],
         ),
       ),
