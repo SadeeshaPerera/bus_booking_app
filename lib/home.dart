@@ -5,6 +5,7 @@ import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
+import 'package:bus_booking_app/general_screens/app_onboarding_screens.dart';
 
 import 'package:bus_booking_app/notification_panel_screen.dart';
 
@@ -74,6 +75,16 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Bus Tracking Splash Screen'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BusTrackingOnboardingScreen()),
+                  );
+                },
+                child: Text('Bus Tracking Onboarding Screen'),
               ),
               ElevatedButton(
                 onPressed: () {

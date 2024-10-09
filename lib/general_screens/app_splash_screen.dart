@@ -26,20 +26,23 @@ class _AppSplashScreenState extends State<AppSplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[900],
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/images/Bus_App_Logo_3.png',
-                height: 100), // Replace with your logo
+            Image.asset(
+              'assets/images/UEE_Bus_App_Logo_3_Circle.png',
+              height: 75,
+              width: 75,
+            ), // Replace with your logo
             const SizedBox(height: 20),
             const Text(
-              'Bus Schedule & Tracking',
+              'BGLK',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.blue,
               ),
             ),
             const SizedBox(height: 20),

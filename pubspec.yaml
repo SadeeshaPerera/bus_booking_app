@@ -83,6 +83,7 @@ flutter:
     - assets/images/popular_routes_3.png
     - assets/images/popular_routes_4.png
 
+    - assets/images/
     - assets/images/calendar.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
