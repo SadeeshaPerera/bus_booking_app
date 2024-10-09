@@ -2,9 +2,11 @@ import 'package:bus_booking_app/AnnouncementScreen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
+
 import 'package:bus_booking_app/home.dart';
 import 'package:bus_booking_app/notification_panel.dart';
 import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
+import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
 import 'package:flutter/material.dart';
 
 class BusTimetableScreen extends StatefulWidget {
@@ -440,6 +442,50 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                                     title: const Padding(
                                       padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
                                       child: Text('Track Bus',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SampleRoutePage()),
+                              );
+                              // Add your navigation or action here
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: const ListTile(
+                                    leading: Icon(
+                                      Icons.chair_alt_outlined,
+                                      size: 68,
+                                      color: Colors.amber,
+                                    ),
+                                    title: Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('Book a Seat',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500)),
                                     ),

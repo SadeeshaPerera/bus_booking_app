@@ -95,15 +95,6 @@ class HomeScreen extends StatelessWidget {
                 },
                 child: Text('Bus Timetable'),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SampleRoutePage()),
-                  );
-                },
-                child: const Text('Bus seat booking'),
-              ),
             ],
           ),
         ),
