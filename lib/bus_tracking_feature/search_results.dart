@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/trigger_alarm.dart';
 import 'package:flutter/material.dart';
 import 'filter_options.dart';
 import 'search_results_card.dart'; // Import the BusTicketCard class
@@ -251,18 +252,28 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                 children: filteredBusTickets.map((ticket) {
                   return Padding(
                     padding: const EdgeInsets.only(top: 16.0),
-                    child: BusTicketCard(
-                      departureTime: ticket['departureTime']!,
-                      arrivalTime: ticket['arrivalTime']!,
-                      duration: ticket['duration']!,
-                      startLocation: ticket['startLocation']!,
-                      endLocation: ticket['endLocation']!,
-                      tripType: ticket['tripType']!,
-                      price: ticket['price']!,
-                      seatsLeft: ticket['seatsLeft']!,
-                      busNo: ticket['busNo']!,
-                      airConditionType: ticket['airConditionType']!,
-                      busArrivalTime: ticket['busArrivalTime']!,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TriggerAlarmScreen(),
+                          ),
+                        );
+                      },
+                      child: BusTicketCard(
+                        departureTime: ticket['departureTime']!,
+                        arrivalTime: ticket['arrivalTime']!,
+                        duration: ticket['duration']!,
+                        startLocation: ticket['startLocation']!,
+                        endLocation: ticket['endLocation']!,
+                        tripType: ticket['tripType']!,
+                        price: ticket['price']!,
+                        seatsLeft: ticket['seatsLeft']!,
+                        busNo: ticket['busNo']!,
+                        airConditionType: ticket['airConditionType']!,
+                        busArrivalTime: ticket['busArrivalTime']!,
+                      ),
                     ),
                   );
                 }).toList(),
