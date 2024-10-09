@@ -2,6 +2,7 @@ import 'package:bus_booking_app/AnnouncementScreen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 import 'package:bus_booking_app/home.dart';
+import 'package:bus_booking_app/notification_panel.dart';
 import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -268,44 +269,21 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                       height: 400, // Adjust height as needed
                       child: ListView(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 90,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade200,
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        NotificationPanelScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Container(
-                                margin: const EdgeInsets.all(15.0),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/news_alert.png',
-                                    width: 68,
-                                    height: 68,
-                                  ),
-                                  title: const Padding(
-                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
-                                    child: Text('News Alerts',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 90,
-                              decoration: BoxDecoration(
+                                height: 90,
+                                decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(16),
                                   boxShadow: [
@@ -314,56 +292,111 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                                       spreadRadius: 2,
                                       blurRadius: 5,
                                     ),
-                                  ]),
-                              child: Container(
-                                margin: const EdgeInsets.all(15.0),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/bus_fares.png',
-                                    // color: Colors.orange,
-                                    width: 68,
-                                    height: 68,
-                                  ),
-                                  title: const Padding(
-                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
-                                    child: Text(
-                                      'Bus Fares',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/news_alert.png',
+                                      width: 68,
+                                      height: 68,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('News Alerts',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 90,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade200,
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        PopularRouteDetailsScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Container(
-                                margin: const EdgeInsets.all(15.0),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/support_desk.png',
-                                    width: 68,
-                                    height: 68,
-                                  ),
-                                  title: const Padding(
-                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
-                                    child: Text('Support Desk',
+                                height: 90,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(16),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade200,
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                      ),
+                                    ]),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/bus_fares.png',
+                                      // color: Colors.orange,
+                                      width: 68,
+                                      height: 68,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text(
+                                        'Bus Fares',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.w500)),
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AnnouncementScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/support_desk.png',
+                                      width: 68,
+                                      height: 68,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('Support Desk',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    ),
                                   ),
                                 ),
                               ),

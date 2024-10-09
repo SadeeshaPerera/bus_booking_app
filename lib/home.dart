@@ -121,17 +121,6 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AnnouncementScreen()), // Navigate to AnnouncementScreen
-                  );
-                },
-                child: Text('Missing Items'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
                             NotificationPanelScreen()), // Navigate to Notification Panel
                   );
                 },
