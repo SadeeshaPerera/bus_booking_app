@@ -12,6 +12,7 @@ class PopularRouteDetailsScreen extends StatefulWidget {
 
 class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
   int _selectedIndex = 0;
+  String selectedFilterCriteria = '';
 
   void _onItemTapped(int index) {
     setState(() {
@@ -77,6 +78,34 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
     },
   ];
 
+  List<Map<String, dynamic>> get filteredRoutes {
+    if (selectedFilterCriteria.isEmpty) {
+      return routes;
+    } else {
+      return routes.where((route) {
+        switch (selectedFilterCriteria) {
+          case 'mainRoutes':
+            return route['title'].contains('Colombo') ||
+                route['title'].contains('Kandy');
+          case 'highwayRoutes':
+            return route['title'].contains('Galle') ||
+                route['title'].contains('Jaffna');
+          case 'shortRoutes':
+            return route['title'].contains('Ja Ela') ||
+                route['title'].contains('Yakkala');
+          default:
+            return true;
+        }
+      }).toList();
+    }
+  }
+
+  void onFilterSelected(String criteria) {
+    setState(() {
+      selectedFilterCriteria = criteria;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,8 +134,8 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -114,13 +143,22 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
                 children: [
                   SizedBox(width: 8),
                   FilterChipWidget(
-                      label: 'Main Routes', icon: Icons.directions_bus),
+                      label: 'Main Routes',
+                      icon: Icons.directions_bus,
+                      onSelected: onFilterSelected,
+                      filterCriteria: 'mainRoutes'),
                   SizedBox(width: 8),
                   FilterChipWidget(
-                      label: 'Highway Routes', icon: Icons.alt_route),
+                      label: 'Highway Routes',
+                      icon: Icons.alt_route,
+                      onSelected: onFilterSelected,
+                      filterCriteria: 'highwayRoutes'),
                   SizedBox(width: 8),
                   FilterChipWidget(
-                      label: 'Short Routes', icon: Icons.location_on),
+                      label: 'Short Routes',
+                      icon: Icons.location_on,
+                      onSelected: onFilterSelected,
+                      filterCriteria: 'shortRoutes'),
                   SizedBox(width: 8),
                 ],
               ),
@@ -128,9 +166,9 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: routes.length,
+              itemCount: filteredRoutes.length,
               itemBuilder: (context, index) {
-                final route = routes[index];
+                final route = filteredRoutes[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -184,20 +222,29 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
 class FilterChipWidget extends StatelessWidget {
   final String label;
   final IconData icon;
+  final Function(String) onSelected;
+  final String filterCriteria;
 
-  const FilterChipWidget({super.key, required this.label, required this.icon});
+  const FilterChipWidget({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.onSelected,
+    required this.filterCriteria,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Row(
-        children: [
-          Icon(icon, size: 16),
-          const SizedBox(width: 5),
-          Text(label),
-        ],
+    return GestureDetector(
+      onTap: () => onSelected(filterCriteria),
+      child: Chip(
+        avatar: Icon(icon, size: 20.0, color: Colors.black54),
+        label: Text(label),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
       ),
-      selected: false,
     );
   }
 }
