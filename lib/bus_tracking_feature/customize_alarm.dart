@@ -29,7 +29,9 @@ class CustomizeAlarmScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Center(
-                child: Text('Get Off Now', style: TextStyle(fontSize: 18))),
+                child: Text('Get Off Now',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
             const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(

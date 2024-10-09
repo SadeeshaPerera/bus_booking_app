@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:bus_booking_app/home.dart';
@@ -229,7 +230,13 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
                                   // const SizedBox(width: 10),
                                   ElevatedButton(
                                     onPressed: () {
-                                      print('Customize button pressed');
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              CustomizeAlarmScreen(),
+                                        ),
+                                      );
                                     },
                                     child: const Text('Customize',
                                         style: TextStyle(color: Colors.green)),

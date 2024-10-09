@@ -100,16 +100,6 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CustomizeAlarmScreen()),
-                  );
-                },
-                child: Text('Customize Alarm'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
                         builder: (context) =>
                             NotificationPanelScreen()), // Navigate to Notification Panel
                   );
