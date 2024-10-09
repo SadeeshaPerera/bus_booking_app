@@ -8,7 +8,6 @@ class CustomizeAlarmScreen extends StatefulWidget {
 }
 
 class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
-  bool _isSoundEnabled = true;
   bool _isVibrateEnabled = true;
   double _volume = 0.5;
 
@@ -60,34 +59,21 @@ class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 60),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Sound',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Bluebird',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
-                  ],
+                const Text(
+                  'Alarm Sound',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                Switch(
-                  value: _isSoundEnabled,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _isSoundEnabled = value;
-                    });
-                  },
+                const Text(
+                  'Bluebird',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],
             ),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -121,6 +107,22 @@ class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
               max: 1,
               divisions: 10,
               label: (_volume * 100).round().toString(),
+            ),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Preview Alarm',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.arrow_forward),
+                  onPressed: () {
+                    // Implement preview alarm functionality here
+                  },
+                ),
+              ],
             ),
           ],
         ),
