@@ -1,10 +1,52 @@
 import 'package:bus_booking_app/AnnouncementScreen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
+import 'package:bus_booking_app/home.dart';
+import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
 import 'package:flutter/material.dart';
 
-class BusTimetableScreen extends StatelessWidget {
+class BusTimetableScreen extends StatefulWidget {
   const BusTimetableScreen({super.key});
+
+  @override
+  _BusTimetableScreenState createState() => _BusTimetableScreenState();
+}
+
+class _BusTimetableScreenState extends State<BusTimetableScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NoTicketsScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PopularRouteDetailsScreen()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnnouncementScreen()),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -338,24 +380,10 @@ class BusTimetableScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // Set to the active tab
-        onTap: (index) {
-          if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AnnouncementScreen(),
-              ),
-            );
-          } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PopularRouteDetailsScreen(),
-              ),
-            );
-          }
-        },
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -374,8 +402,6 @@ class BusTimetableScreen extends StatelessWidget {
             label: 'Help',
           ),
         ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
       ),
     );
   }
