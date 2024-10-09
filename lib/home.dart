@@ -99,17 +99,6 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            NotificationPanelScreen()), // Navigate to Notification Panel
-                  );
-                },
-                child: Text('Go to Notifications'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
                     MaterialPageRoute(builder: (context) => SampleRoutePage()),
                   );
                 },
