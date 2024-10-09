@@ -103,6 +103,61 @@ class _TriggerAlarmScreenState extends State<TriggerAlarmScreen> {
               ),
             ),
             Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CustomizeAlarmScreen()),
+                          );
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.blue[600],
+                          radius: 40,
+                          child: const Icon(
+                            Icons.notifications_active,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(250, 10, 5, 10),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: const Text('5 Min',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center),
+            ),
+            Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -115,9 +170,9 @@ class _TriggerAlarmScreenState extends State<TriggerAlarmScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Bus Route',
+                    'A13 kandy Rd',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -150,77 +205,12 @@ class _TriggerAlarmScreenState extends State<TriggerAlarmScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  // const Text(
-                  //   'Estimated Time of Arrival',
-                  //   style: TextStyle(
-                  //     fontSize: 20,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
-                  const SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 10,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const Text('ETA: 2 hours 30 minutes'),
-                  ),
-                  const SizedBox(height: 20),
-                  // const Text(
-                  //   'Alarm',
-                  //   style: TextStyle(
-                  //     fontSize: 20,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
-                  const SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 10,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                            'Set an alarm to wake you up before arrival'),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const CustomizeAlarmScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text('Set Alarm'),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
-          ])
+            const SizedBox(height: 20),
+            const SizedBox(height: 20),
+          ]),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
