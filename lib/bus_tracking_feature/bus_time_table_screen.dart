@@ -1,4 +1,5 @@
 import 'package:bus_booking_app/AnnouncementScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 import 'package:flutter/material.dart';
 
 class BusTimetableScreen extends StatelessWidget {
@@ -192,7 +193,14 @@ class BusTimetableScreen extends StatelessWidget {
                           const SizedBox(height: 16),
                           Center(
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SearchResultsScreen()),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 backgroundColor: Colors.blue,

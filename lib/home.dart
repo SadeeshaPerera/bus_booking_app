@@ -2,7 +2,6 @@ import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
-import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 import 'package:bus_booking_app/general_screens/bus_onboarding_screens.dart';
@@ -95,16 +94,6 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Bus Timetable'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SearchResultsScreen()),
-                  );
-                },
-                child: Text('Bus Search Results'),
               ),
               ElevatedButton(
                 onPressed: () {
