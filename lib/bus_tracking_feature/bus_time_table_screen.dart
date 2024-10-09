@@ -1,4 +1,5 @@
 import 'package:bus_booking_app/AnnouncementScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 import 'package:flutter/material.dart';
 
@@ -344,6 +345,13 @@ class BusTimetableScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => const AnnouncementScreen(),
+              ),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PopularRouteDetailsScreen(),
               ),
             );
           }

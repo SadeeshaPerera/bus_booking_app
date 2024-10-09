@@ -1,6 +1,6 @@
 import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
-import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
+
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
@@ -114,16 +114,6 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Text('Customize Alarm'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PopularRouteDetailsScreen()),
-                  );
-                },
-                child: Text('Popular Routes'),
               ),
               ElevatedButton(
                 onPressed: () {
