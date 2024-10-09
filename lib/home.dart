@@ -100,16 +100,6 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ActiveAlarmScreen()),
-                  );
-                },
-                child: const Text('Active Alarm Section'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
                         builder: (context) => CustomizeAlarmScreen()),
                   );
                 },

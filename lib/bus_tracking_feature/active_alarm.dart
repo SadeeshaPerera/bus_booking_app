@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:bus_booking_app/home.dart';
 import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
@@ -12,14 +13,54 @@ class ActiveAlarmScreen extends StatefulWidget {
 }
 
 class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
+  late GoogleMapController _mapController;
   final TextEditingController _searchController = TextEditingController();
+  final LatLng _initialPosition = const LatLng(6.9271, 79.8612); // Colombo
+  final LatLng _destinationPosition = const LatLng(7.2906, 80.6337); // Kandy
+  final Set<Marker> _markers = {};
+  final Set<Polyline> _polylines = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _markers.add(
+      Marker(
+        markerId: const MarkerId('currentLocation'),
+        position: _initialPosition,
+        infoWindow: const InfoWindow(title: 'Current Location'),
+      ),
+    );
+    _markers.add(
+      Marker(
+        markerId: const MarkerId('destination'),
+        position: _destinationPosition,
+        infoWindow: const InfoWindow(title: 'Destination'),
+      ),
+    );
+    _polylines.add(
+      Polyline(
+        polylineId: const PolylineId('route'),
+        points: [_initialPosition, _destinationPosition],
+        color: Colors.orange,
+        width: 5,
+      ),
+    );
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _mapController = controller;
+  }
 
   void _searchAndNavigate() {
     // Implement search functionality here
   }
 
   void _goToCurrentLocation() {
-    // Implement go to current location functionality here
+    _mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: _initialPosition, zoom: 14),
+      ),
+    );
   }
 
   @override
@@ -35,197 +76,175 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
         ),
         title: const Text('Track Bus', style: TextStyle(color: Colors.white)),
         actions: [
-          CircleAvatar(
-            backgroundImage: Image.asset('assets/images/round_dp.png').image,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: CircleAvatar(
+              backgroundImage: Image.asset('assets/images/round_dp.png').image,
+            ),
           ),
         ],
       ),
       body: Stack(
         children: [
-          // Placeholder for the map or other content
-          Container(
-            color: Colors.grey[200],
-            child: Center(
-              child: Text(
-                'Map or other content goes here',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
-              ),
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/mapbg.png',
+              fit: BoxFit.cover,
             ),
           ),
-          Positioned(
-            top: 10,
-            left: 15,
-            right: 15,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: _searchAndNavigate,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: _searchController,
-                      decoration: const InputDecoration(
-                        hintText: 'Search location',
-                        border: InputBorder.none,
+          // Main Content
+          Column(
+            children: [
+              Expanded(
+                child: Stack(
+                  children: [
+                    GoogleMap(
+                      onMapCreated: _onMapCreated,
+                      initialCameraPosition: CameraPosition(
+                        target: _initialPosition,
+                        zoom: 10,
                       ),
-                      onSubmitted: (value) {
-                        _searchAndNavigate();
-                      },
+                      markers: _markers,
+                      polylines: _polylines,
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      _searchController.clear();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 80,
-            right: 15,
-            child: FloatingActionButton(
-              onPressed: _goToCurrentLocation,
-              backgroundColor: Colors.blue,
-              child: const Icon(Icons.my_location, color: Colors.white),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: const Offset(0, -2),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.notifications,
-                        color: Colors.blue,
-                        size: 50,
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    Positioned(
+                      top: 10,
+                      left: 15,
+                      right: 15,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Row(
                           children: [
-                            const Text(
-                              'Get off next bus stand. You are near to your destination',
-                              style: TextStyle(fontSize: 16),
+                            IconButton(
+                              icon: const Icon(Icons.search),
+                              onPressed: _searchAndNavigate,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    print('Turn off button pressed');
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.red,
-                                  ),
-                                  child: const Text(
-                                    'Turn off',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                            Expanded(
+                              child: TextField(
+                                controller: _searchController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Search location',
+                                  border: InputBorder.none,
                                 ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    print('Customize button pressed');
-                                  },
-                                  child: const Text('Customize'),
-                                ),
-                              ],
+                                onSubmitted: (value) {
+                                  _searchAndNavigate();
+                                },
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _searchController.clear();
+                              },
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const Divider(),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Route Details',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ),
+                    Positioned(
+                      bottom: 80,
+                      right: 15,
+                      child: FloatingActionButton(
+                        onPressed: _goToCurrentLocation,
+                        backgroundColor: Colors.blue,
+                        child:
+                            const Icon(Icons.my_location, color: Colors.white),
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.expand_less),
-                        onPressed: () {
-                          print('Expand button pressed');
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      const Icon(Icons.directions_bus, color: Colors.blue),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Bus No: 123',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                              'From: Colombo',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
-                            ),
-                            Text(
-                              'To: Kandy',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
-            ),
+              Container(
+                padding: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: const Offset(0, -2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.red[
+                              400], // Adjust the background color as needed
+                          radius: 30, // Adjust the radius as needed
+                          child: const Icon(
+                            Icons.notifications,
+                            color: Colors.white,
+                            size: 30, // Adjust the icon size as needed
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Get off next bus stand. You are near to your destination',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      print('Turn off button pressed');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    child: const Text(
+                                      'Turn off',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                  // const SizedBox(width: 10),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      print('Customize button pressed');
+                                    },
+                                    child: const Text('Customize',
+                                        style: TextStyle(color: Colors.green)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

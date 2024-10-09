@@ -1,4 +1,5 @@
 import 'package:bus_booking_app/AnnouncementScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 import 'package:bus_booking_app/home.dart';
@@ -405,6 +406,11 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                           // New Card Below Support Desk
                           GestureDetector(
                             onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ActiveAlarmScreen()),
+                              );
                               // Add your navigation or action here
                             },
                             child: Padding(
