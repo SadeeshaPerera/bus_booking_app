@@ -46,7 +46,9 @@ class RouteDetailsScreen extends StatelessWidget {
                               IconButton(
                                 icon: const Icon(Icons.arrow_back),
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                               ),
                               const Text(
                                 'Route Details',
