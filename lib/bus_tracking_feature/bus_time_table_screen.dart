@@ -402,6 +402,46 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                               ),
                             ),
                           ),
+                          // New Card Below Support Desk
+                          GestureDetector(
+                            onTap: () {
+                              // Add your navigation or action here
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Icon(
+                                      Icons.directions_bus,
+                                      size: 68,
+                                      color: Colors.blue,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('Track Bus',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
