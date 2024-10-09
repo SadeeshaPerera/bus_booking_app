@@ -5,7 +5,7 @@ import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
-import 'package:bus_booking_app/general_screens/bus_tracking_onboarding_screen.dart';
+import 'package:bus_booking_app/general_screens/bus_onboarding_screens.dart';
 
 import 'package:bus_booking_app/notification_panel_screen.dart';
 
@@ -74,17 +74,17 @@ class HomeScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => AppSplashScreen()),
                   );
                 },
-                child: Text('Bus Tracking Splash Screen'),
+                child: Text('Bus Splash Screen'),
               ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BusTrackingOnboardingScreen()),
+                        builder: (context) => BusOnboardingScreen()),
                   );
                 },
-                child: Text('Bus Tracking Onboarding Screen'),
+                child: Text('Bus  Onboarding Screen'),
               ),
               ElevatedButton(
                 onPressed: () {

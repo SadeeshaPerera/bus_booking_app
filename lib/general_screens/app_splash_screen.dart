@@ -47,7 +47,7 @@ class _AppSplashScreenState extends State<AppSplashScreen> {
             ),
             const SizedBox(height: 20),
             const SpinKitFadingCircle(
-              color: Colors.white,
+              color: Colors.blue,
               size: 50.0,
             ),
           ],
