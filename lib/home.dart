@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bus_booking_app/AnnouncementScreen.dart'; // Import the AnnouncementScreen
 import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
+import 'package:bus_booking_app/general_screens/app_splash_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -65,6 +66,15 @@ class HomeScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               const SignOutButton(),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AppSplashScreen()),
+                  );
+                },
+                child: Text('Bus Tracking Splash Screen'),
+              ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
