@@ -8,121 +8,151 @@ class AnnouncementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
-        foregroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context); // Navigate back to the home page
-          },
-        ),
-        title: const Text('Notice Board'),
-        centerTitle: true, // Center the title
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+      body: Column(
+        children: [
+          // Create a rounded AppBar using a Container
+          Container(
+            height: 120.0,
+            decoration: BoxDecoration(
+              color: const Color(0xFF4A43EC), // Blue background for the AppBar
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3), // Shadow for AppBar
+                  offset: const Offset(0, 4),
+                  blurRadius: 8,
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: SafeArea(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context); // Navigate back to the previous page
+                    },
+                  ),
+                  const Text(
+                    'Notice Board',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Rest of the body content
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Instructions Box with increased size
+                  Container(
+                    width: double.infinity, // Expands to full width
+                    height: 350.0,
+                    padding: const EdgeInsets.all(30.0), // Increased padding
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 254, 254),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3), // Shadow color
+                          offset: const Offset(0, 2), // Offset of the shadow
+                          blurRadius: 4, // Blur radius of the shadow
+                          spreadRadius: 2, // Spread radius of the shadow
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: const [
+                        Text(
+                          'INSTRUCTIONS',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 19),
+                        ),
+                        SizedBox(height: 40),
+                        Text(
+                          'Please note that you are responsible for the accuracy of the information you provide in your notice. '
+                          'We are not liable for any delays in locating or returning your items.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 19),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 40), // Increase space between box and buttons
+                  // Button for "Report Missing Items" with equal size
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to Report Missing Items Screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReportMissingItemsScreen(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF5669FF), // Set the button color
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      minimumSize: const Size(250, 50), // Set equal size for both buttons
+                    ),
+                    child: const Text(
+                      'REPORT MISSING ITEMS',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // Button for "Find Missing Items" with equal size
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to Find Missing Items Screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FindMissingItemsScreen(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF5669FF), // Set the button color
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      minimumSize: const Size(250, 50), // Set equal size for both buttons
+                    ),
+                    child: const Text(
+                      'FIND MISSING ITEMS',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Instructions Box with increased size
-            Container(
-              width: double.infinity, // Expands to full width
-              height: 350.0,
-              padding: const EdgeInsets.all(30.0), // Increased padding
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 254, 254),
-                borderRadius: BorderRadius.circular(16),
-
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3), // Shadow color
-                    offset: const Offset(0, 2), // Offset of the shadow
-                    blurRadius: 4, // Blur radius of the shadow
-                    spreadRadius: 2, // Spread radius of the shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: const [
-                  Text(
-                    'INSTRUCTIONS',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
-                  ),
-                  SizedBox(height: 40),
-                  Text(
-                    'Please note that you are responsible for the accuracy of the information you provide in your notice. '
-                    'We are not liable for any delays in locating or returning your items.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 19),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 40), // Increase space between box and buttons
-            // Button for "Report Missing Items" with equal size
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Report Missing Items Screen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ReportMissingItemsScreen(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF5669FF), // Set the button color
-                foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                minimumSize: const Size(250, 50), // Set equal size for both buttons
-              ),
-              child: const Text(
-                'REPORT MISSING ITEMS',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Button for "Find Missing Items" with equal size
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Find Missing Items Screen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FindMissingItemsScreen(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF5669FF), // Set the button color
-                foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                minimumSize: const Size(250, 50), // Set equal size for both buttons
-              ),
-              child: const Text(
-                'FIND MISSING ITEMS',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ),
-          ],
-        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 3, // Set active tab
