@@ -33,8 +33,8 @@ class _AppSplashScreenState extends State<AppSplashScreen> {
           children: <Widget>[
             Image.asset(
               'assets/images/UEE_Bus_App_Logo_3_Circle.png',
-              height: 75,
-              width: 75,
+              height: 125,
+              width: 125,
             ), // Replace with your logo
             const SizedBox(height: 20),
             const Text(
@@ -48,7 +48,7 @@ class _AppSplashScreenState extends State<AppSplashScreen> {
             const SizedBox(height: 20),
             const SpinKitFadingCircle(
               color: Colors.blue,
-              size: 50.0,
+              size: 25.0,
             ),
           ],
         ),
