@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class RouteDetailsScreen extends StatelessWidget {
-  const RouteDetailsScreen({super.key});
+  final String title;
+  final String image;
+  final String price;
+  final String location;
+  final double rating;
+
+  const RouteDetailsScreen({
+    super.key,
+    required this.title,
+    required this.image,
+    required this.price,
+    required this.location,
+    required this.rating,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -94,15 +107,15 @@ class RouteDetailsScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Galle to Kandy',
-                              style: TextStyle(
+                            Text(
+                              title,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              '244 km',
+                              '244 km', // You can update this to be dynamic if needed
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.grey[600],
@@ -117,16 +130,17 @@ class RouteDetailsScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'Galle',
-                                  style: TextStyle(
+                                Text(
+                                  location.split('-')[
+                                      0], // Assuming location is in "Start-End" format
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green,
                                   ),
                                 ),
                                 Text(
-                                  '06:00 AM',
+                                  '06:00 AM', // You can update this to be dynamic if needed
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey[600],
@@ -137,16 +151,17 @@ class RouteDetailsScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'Kandy',
-                                  style: TextStyle(
+                                Text(
+                                  location.split('-')[
+                                      1], // Assuming location is in "Start-End" format
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green,
                                   ),
                                 ),
                                 Text(
-                                  '11:00 AM',
+                                  '11:00 AM', // You can update this to be dynamic if needed
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey[600],

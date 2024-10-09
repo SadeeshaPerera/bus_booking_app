@@ -1,19 +1,20 @@
+import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 import 'package:flutter/material.dart';
 
 class PopularRouteDetailsScreen extends StatelessWidget {
-  final routes = [
+  final List<Map<String, dynamic>> routes = [
     {
       "image": "assets/images/popular_routes_1.png",
       "title": "Colombo-Kandy",
       "price": "LKR 550/-",
-      "location": "Colombo-Kandy A1 Rd",
+      "location": "Colombo-Kandy",
       "rating": 4.6
     },
     {
       "image": "assets/images/popular_routes_2.png",
       "title": "Galle-Kandy",
       "price": "LKR 1000/-",
-      "location": "E01 and Kandy-Cmb ",
+      "location": "Galle-Kandy",
       "rating": 4.6
     },
     {
@@ -87,8 +88,23 @@ class PopularRouteDetailsScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: routes.length,
               itemBuilder: (context, index) {
-                return RouteCard(
-                  route: routes[index],
+                final route = routes[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RouteDetailsScreen(
+                          title: route['title'],
+                          image: route['image'],
+                          price: route['price'],
+                          location: route['location'],
+                          rating: route['rating'],
+                        ),
+                      ),
+                    );
+                  },
+                  child: RouteCard(route: route),
                 );
               },
             ),

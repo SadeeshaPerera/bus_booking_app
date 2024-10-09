@@ -120,16 +120,6 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => RouteDetailsScreen()),
-                  );
-                },
-                child: Text('Route Details'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
                         builder: (context) =>
                             AnnouncementScreen()), // Navigate to AnnouncementScreen
                   );
