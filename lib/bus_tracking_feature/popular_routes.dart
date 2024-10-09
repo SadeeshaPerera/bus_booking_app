@@ -111,7 +111,12 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
-        leading: const Icon(Icons.arrow_back, color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title:
             const Text('Route Details', style: TextStyle(color: Colors.white)),
         actions: [
