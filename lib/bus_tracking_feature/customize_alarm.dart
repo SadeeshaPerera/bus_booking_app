@@ -43,7 +43,7 @@ class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
                 child: Text('Get Off Now',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
-            const SizedBox(height: 20),
+            const SizedBox(height: 60),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -59,7 +59,7 @@ class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -70,24 +70,6 @@ class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
                 const Text(
                   'Bluebird',
                   style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Vibrate',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                Switch(
-                  value: _isVibrateEnabled,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _isVibrateEnabled = value;
-                    });
-                  },
                 ),
               ],
             ),
@@ -108,7 +90,25 @@ class _CustomizeAlarmScreenState extends State<CustomizeAlarmScreen> {
               divisions: 10,
               label: (_volume * 100).round().toString(),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Vibrate',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Switch(
+                  value: _isVibrateEnabled,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _isVibrateEnabled = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
