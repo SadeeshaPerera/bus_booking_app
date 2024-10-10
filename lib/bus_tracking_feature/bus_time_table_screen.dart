@@ -2,7 +2,6 @@ import 'package:bus_booking_app/AnnouncementScreen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
 import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
-
 import 'package:bus_booking_app/home.dart';
 import 'package:bus_booking_app/notification_panel.dart';
 import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
@@ -18,6 +17,32 @@ class BusTimetableScreen extends StatefulWidget {
 
 class _BusTimetableScreenState extends State<BusTimetableScreen> {
   int _selectedIndex = 0;
+  String _selectedLocation = 'Colombo Fort';
+  String _selectedDestination = 'Pettah';
+  String _selectedDate = 'Today';
+
+  List<String> busStops = [
+    'Colombo Fort',
+    'Pettah',
+    'Bambalapitiya',
+    'Wellawatte',
+    'Dehiwala',
+    'Mount Lavinia',
+    'Moratuwa',
+    'Panadura',
+    'Kalutara',
+    'Galle',
+    'Matara',
+    'Kandy',
+    'Peradeniya',
+    'Nuwara Eliya',
+    'Badulla',
+    'Ratnapura',
+    'Kurunegala',
+    'Anuradhapura',
+    'Polonnaruwa',
+    'Jaffna'
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,6 +75,48 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
         );
         break;
     }
+  }
+
+  void _showLocationDropdown(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView(
+          children: busStops.map((String value) {
+            return ListTile(
+              title: Text(value),
+              onTap: () {
+                setState(() {
+                  _selectedLocation = value;
+                });
+                Navigator.pop(context);
+              },
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+
+  void _showDestinationDropdown(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView(
+          children: busStops.map((String value) {
+            return ListTile(
+              title: Text(value),
+              onTap: () {
+                setState(() {
+                  _selectedDestination = value;
+                });
+                Navigator.pop(context);
+              },
+            );
+          }).toList(),
+        );
+      },
+    );
   }
 
   @override
@@ -121,77 +188,86 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                             children: [
                               Column(
                                 children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: const Offset(0,
-                                              3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(Icons.directions_bus_outlined,
+                                  GestureDetector(
+                                    onTap: () => _showLocationDropdown(context),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: const Offset(0,
+                                                3), // changes position of shadow
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                              Icons.directions_bus_outlined,
+                                              color: Colors.black54),
+                                          const SizedBox(width: 8),
+                                          const Text(
+                                            'Your Location',
+                                            style: TextStyle(
+                                                fontSize: 16,
                                                 color: Colors.black54),
-                                            SizedBox(width: 8),
-                                            Text(
-                                              'Your Location',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black54),
-                                            ),
-                                            Spacer(),
-                                          ],
-                                        ),
-                                      ],
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            _selectedLocation,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black54),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
                                       height: 9), // Space for the CircleAvatar
-                                  Container(
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: const Offset(0,
-                                              3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(Icons.location_pin,
+                                  GestureDetector(
+                                    onTap: () =>
+                                        _showDestinationDropdown(context),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: const Offset(0,
+                                                3), // changes position of shadow
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.location_pin,
+                                              color: Colors.black54),
+                                          const SizedBox(width: 8),
+                                          const Text(
+                                            'Destination',
+                                            style: TextStyle(
+                                                fontSize: 16,
                                                 color: Colors.black54),
-                                            SizedBox(width: 8),
-                                            Text(
-                                              'Destination',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black54),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            _selectedDestination,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black54),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -201,15 +277,15 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                                 right: 15, // Adjust the position as needed
                                 child: CircleAvatar(
                                   radius: 20,
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Colors.white,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.arrow_downward_outlined,
-                                          color: Colors.white, size: 16),
+                                          color: Colors.blue, size: 16),
                                       SizedBox(width: 1),
                                       Icon(Icons.arrow_upward_outlined,
-                                          color: Colors.white, size: 16),
+                                          color: Colors.blue, size: 16),
                                     ],
                                   ),
                                 ),
@@ -219,11 +295,33 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                           const SizedBox(height: 12),
                           Row(
                             children: [
-                              const ChoiceChip(
-                                  label: Text('Today'), selected: true),
+                              ChoiceChip(
+                                label: Text('Today'),
+                                selected: _selectedDate == 'Today',
+                                selectedColor: const Color.fromARGB(
+                                    255,
+                                    224,
+                                    240,
+                                    253), // Specific color for selected chip
+                                onSelected: (bool selected) {
+                                  setState(() {
+                                    _selectedDate = 'Today';
+                                  });
+                                },
+                              ),
                               const SizedBox(width: 8),
-                              const ChoiceChip(
-                                  label: Text('Tomorrow'), selected: false),
+                              ChoiceChip(
+                                label: Text('Tomorrow'),
+                                selected: _selectedDate == 'Tomorrow',
+                                selectedColor:
+                                    const Color.fromARGB(255, 224, 240, 253),
+                                // Specific color for selected chip
+                                onSelected: (bool selected) {
+                                  setState(() {
+                                    _selectedDate = 'Tomorrow';
+                                  });
+                                },
+                              ),
                               const SizedBox(width: 8),
                               GestureDetector(
                                 onTap: () async {
@@ -234,14 +332,16 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                                     lastDate: DateTime(2101),
                                   );
                                   if (selectedDate != null) {
-                                    // Handle the selected date
-                                    // print('Selected date: $selectedDate');
+                                    setState(() {
+                                      _selectedDate = 'Other';
+                                    });
                                   }
                                 },
-                                child: const ChoiceChip(
+                                child: ChoiceChip(
                                   label: Text('Other'),
-                                  selected: false,
-                                  avatar: Icon(Icons.calendar_today, size: 20),
+                                  selected: _selectedDate == 'Other',
+                                  selectedColor: Colors
+                                      .blue, // Specific color for selected chip
                                 ),
                               ),
                             ],

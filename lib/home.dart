@@ -1,16 +1,11 @@
 import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
-
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
-
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 import 'package:bus_booking_app/general_screens/bus_onboarding_screens.dart';
-
 import 'package:bus_booking_app/notification_panel_screen.dart';
-
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:bus_booking_app/AnnouncementScreen.dart'; // Import the AnnouncementScreen
 import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
 import 'package:bus_booking_app/general_screens/app_splash_screen.dart';
@@ -71,18 +66,32 @@ class HomeScreen extends StatelessWidget {
               ),
               const SignOutButton(),
               SizedBox(height: 80),
-              ElevatedButton(
-                onPressed: () {
+              GestureDetector(
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => BusTimetableScreen()),
                   );
                 },
-
-                child: Text('Explore'),
-
-
+                child: Card(
+                  margin: const EdgeInsets.all(16),
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Explore',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

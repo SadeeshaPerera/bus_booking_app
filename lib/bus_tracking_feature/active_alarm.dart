@@ -1,7 +1,6 @@
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:bus_booking_app/home.dart';
 import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
@@ -15,54 +14,10 @@ class ActiveAlarmScreen extends StatefulWidget {
 }
 
 class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
-  late GoogleMapController _mapController;
   final TextEditingController _searchController = TextEditingController();
-  final LatLng _initialPosition = const LatLng(6.9271, 79.8612); // Colombo
-  final LatLng _destinationPosition = const LatLng(7.2906, 80.6337); // Kandy
-  final Set<Marker> _markers = {};
-  final Set<Polyline> _polylines = {};
-
-  @override
-  void initState() {
-    super.initState();
-    _markers.add(
-      Marker(
-        markerId: const MarkerId('currentLocation'),
-        position: _initialPosition,
-        infoWindow: const InfoWindow(title: 'Current Location'),
-      ),
-    );
-    _markers.add(
-      Marker(
-        markerId: const MarkerId('destination'),
-        position: _destinationPosition,
-        infoWindow: const InfoWindow(title: 'Destination'),
-      ),
-    );
-    _polylines.add(
-      Polyline(
-        polylineId: const PolylineId('route'),
-        points: [_initialPosition, _destinationPosition],
-        color: Colors.orange,
-        width: 5,
-      ),
-    );
-  }
-
-  void _onMapCreated(GoogleMapController controller) {
-    _mapController = controller;
-  }
 
   void _searchAndNavigate() {
     // Implement search functionality here
-  }
-
-  void _goToCurrentLocation() {
-    _mapController.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(target: _initialPosition, zoom: 14),
-      ),
-    );
   }
 
   @override
@@ -80,8 +35,19 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            child: CircleAvatar(
-              backgroundImage: Image.asset('assets/images/round_dp.png').image,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ),
+                );
+              },
+              child: CircleAvatar(
+                backgroundImage:
+                    Image.asset('assets/images/round_dp.png').image,
+              ),
             ),
           ),
         ],
@@ -91,7 +57,7 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/mapbg.png',
+              'assets/images/mapbg_new.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -101,15 +67,6 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
               Expanded(
                 child: Stack(
                   children: [
-                    GoogleMap(
-                      onMapCreated: _onMapCreated,
-                      initialCameraPosition: CameraPosition(
-                        target: _initialPosition,
-                        zoom: 10,
-                      ),
-                      markers: _markers,
-                      polylines: _polylines,
-                    ),
                     Positioned(
                       top: 10,
                       left: 15,
@@ -155,16 +112,6 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      bottom: 80,
-                      right: 15,
-                      child: FloatingActionButton(
-                        onPressed: _goToCurrentLocation,
-                        backgroundColor: Colors.blue,
-                        child:
-                            const Icon(Icons.my_location, color: Colors.white),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -193,13 +140,12 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
                     Row(
                       children: [
                         CircleAvatar(
-                          backgroundColor: Colors.red[
-                              400], // Adjust the background color as needed
-                          radius: 30, // Adjust the radius as needed
+                          backgroundColor: Colors.red[400],
+                          radius: 30,
                           child: const Icon(
                             Icons.notifications,
                             color: Colors.white,
-                            size: 30, // Adjust the icon size as needed
+                            size: 30,
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -228,7 +174,6 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
                                       style: TextStyle(color: Colors.red),
                                     ),
                                   ),
-                                  // const SizedBox(width: 10),
                                   ElevatedButton(
                                     onPressed: () {
                                       Navigator.push(

@@ -1,9 +1,52 @@
 import 'package:flutter/material.dart';
 import 'ReportMissingItemsScreen.dart'; // Import the ReportMissingItemsScreen
 import 'FindMissingItemsScreen.dart'; // Import the FindMissingItemsScreen
+import 'bus_tracking_feature/bus_time_table_screen.dart'; // Import the BusTimetableScreen
+import 't-2-bus-booking-feature/no_ticket_screen.dart'; // Import the NoTicketsScreen
+import 'bus_tracking_feature/popular_routes.dart'; // Import the PopularRouteDetailsScreen
 
-class AnnouncementScreen extends StatelessWidget {
+class AnnouncementScreen extends StatefulWidget {
   const AnnouncementScreen({super.key});
+
+  @override
+  _AnnouncementScreenState createState() => _AnnouncementScreenState();
+}
+
+class _AnnouncementScreenState extends State<AnnouncementScreen> {
+  int _selectedIndex = 3; // Set active tab
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BusTimetableScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NoTicketsScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PopularRouteDetailsScreen()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnnouncementScreen()),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +78,8 @@ class AnnouncementScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back, color: Colors.white),
                     onPressed: () {
-                      Navigator.pop(context); // Navigate back to the previous page
+                      Navigator.pop(
+                          context); // Navigate back to the previous page
                     },
                   ),
                   const Text(
@@ -47,7 +91,8 @@ class AnnouncementScreen extends StatelessWidget {
                     ),
                   ),
                   const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+                    backgroundImage: AssetImage(
+                        'assets/images/round_dp.png'), // Profile image
                   ),
                 ],
               ),
@@ -94,7 +139,8 @@ class AnnouncementScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 40), // Increase space between box and buttons
+                  const SizedBox(
+                      height: 40), // Increase space between box and buttons
                   // Button for "Report Missing Items" with equal size
                   ElevatedButton(
                     onPressed: () {
@@ -107,14 +153,16 @@ class AnnouncementScreen extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF5669FF), // Set the button color
+                      backgroundColor:
+                          Color(0xFF5669FF), // Set the button color
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      minimumSize: const Size(250, 50), // Set equal size for both buttons
+                      minimumSize: const Size(
+                          250, 50), // Set equal size for both buttons
                     ),
                     child: const Text(
                       'REPORT MISSING ITEMS',
@@ -134,14 +182,16 @@ class AnnouncementScreen extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF5669FF), // Set the button color
+                      backgroundColor:
+                          Color(0xFF5669FF), // Set the button color
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      minimumSize: const Size(250, 50), // Set equal size for both buttons
+                      minimumSize: const Size(
+                          250, 50), // Set equal size for both buttons
                     ),
                     child: const Text(
                       'FIND MISSING ITEMS',
@@ -155,7 +205,8 @@ class AnnouncementScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3, // Set active tab
+        currentIndex: _selectedIndex, // Set active tab
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
