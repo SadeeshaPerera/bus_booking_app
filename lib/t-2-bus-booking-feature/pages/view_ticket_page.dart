@@ -131,13 +131,13 @@ class ViewTicketPage extends StatelessWidget {
                           Text(
                             '$busNumber',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                                fontSize: 13, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 95),
                           Text(
                             DateFormat('EEE, dd MMM yyyy').format(selectedDate),
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 13,
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -183,7 +183,7 @@ class ViewTicketPage extends StatelessWidget {
                               ),
                               SizedBox(width: 5),
                               Container(
-                                width: 45,
+                                width: 15,
                                 child: Divider(
                                     color: Colors.black.withOpacity(0.3),
                                     thickness: 1),
@@ -198,7 +198,7 @@ class ViewTicketPage extends StatelessWidget {
                               ),
                               SizedBox(width: 5),
                               Container(
-                                width: 45,
+                                width: 15,
                                 child: Divider(
                                     color: Colors.black.withOpacity(0.3),
                                     thickness: 1),
@@ -321,14 +321,14 @@ class ViewTicketPage extends StatelessWidget {
                           Text(
                             DateFormat('EEE, dd MMM yyyy, hh:mm a')
                                 .format(createdAt),
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
                       Image.asset(
                         'assets/images/qrImage.png', // QR code image
-                        width: 100,
-                        height: 100,
+                        width: 50,
+                        height: 50,
                       ),
                     ],
                   ),
