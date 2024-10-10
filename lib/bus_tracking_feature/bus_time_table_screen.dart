@@ -464,7 +464,7 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SampleRoutePage()),
+                                    builder: (context) => ScheduleRoutePage()),
                               );
                               // Add your navigation or action here
                             },
