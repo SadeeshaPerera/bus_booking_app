@@ -121,7 +121,7 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                   SizedBox(height: 20),
                   Container(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
                     decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.grey.withOpacity(0.5), width: 2),

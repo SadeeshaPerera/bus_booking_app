@@ -136,7 +136,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 14.0),
+                    horizontal: 10.0, vertical: 14.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -208,7 +208,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.fromLTRB(5, 20, 5, 30),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(20),
