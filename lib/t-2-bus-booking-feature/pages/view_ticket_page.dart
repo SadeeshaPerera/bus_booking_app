@@ -325,10 +325,12 @@ class ViewTicketPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Image.asset(
-                        'assets/images/qrImage.png', // QR code image
-                        width: 100,
-                        height: 100,
+
+                      // QR Code using QRServer API
+                      Image.network(
+                        'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$bookingId',
+                        width: 120,
+                        height: 120,
                       ),
                     ],
                   ),
