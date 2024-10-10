@@ -1,19 +1,66 @@
+import 'package:bus_booking_app/AnnouncementScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
+import 'package:bus_booking_app/home.dart';
+import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
 import 'package:flutter/material.dart';
 
-class PopularRouteDetailsScreen extends StatelessWidget {
-  final routes = [
+class PopularRouteDetailsScreen extends StatefulWidget {
+  @override
+  _PopularRouteDetailsScreenState createState() =>
+      _PopularRouteDetailsScreenState();
+}
+
+class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
+  int _selectedIndex = 0;
+  String selectedFilterCriteria = '';
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BusTimetableScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NoTicketsScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PopularRouteDetailsScreen()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnnouncementScreen()),
+        );
+        break;
+    }
+  }
+
+  final List<Map<String, dynamic>> routes = [
     {
       "image": "assets/images/popular_routes_1.png",
       "title": "Colombo-Kandy",
       "price": "LKR 550/-",
-      "location": "Colombo-Kandy A1 Rd",
+      "location": "Colombo-Kandy",
       "rating": 4.6
     },
     {
       "image": "assets/images/popular_routes_2.png",
       "title": "Galle-Kandy",
       "price": "LKR 1000/-",
-      "location": "E01 and Kandy-Cmb ",
+      "location": "Galle-Kandy",
       "rating": 4.6
     },
     {
@@ -32,14 +79,45 @@ class PopularRouteDetailsScreen extends StatelessWidget {
     },
   ];
 
-  PopularRouteDetailsScreen({super.key});
+  List<Map<String, dynamic>> get filteredRoutes {
+    if (selectedFilterCriteria.isEmpty) {
+      return routes;
+    } else {
+      return routes.where((route) {
+        switch (selectedFilterCriteria) {
+          case 'mainRoutes':
+            return route['title'].contains('Colombo') ||
+                route['title'].contains('Kandy');
+          case 'highwayRoutes':
+            return route['title'].contains('Galle') ||
+                route['title'].contains('Jaffna');
+          case 'shortRoutes':
+            return route['title'].contains('Ja Ela') ||
+                route['title'].contains('Yakkala');
+          default:
+            return true;
+        }
+      }).toList();
+    }
+  }
+
+  void onFilterSelected(String criteria) {
+    setState(() {
+      selectedFilterCriteria = criteria;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
-        leading: const Icon(Icons.arrow_back, color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title:
             const Text('Route Details', style: TextStyle(color: Colors.white)),
         actions: [
@@ -62,8 +140,8 @@ class PopularRouteDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -71,13 +149,22 @@ class PopularRouteDetailsScreen extends StatelessWidget {
                 children: [
                   SizedBox(width: 8),
                   FilterChipWidget(
-                      label: 'Main Routes', icon: Icons.directions_bus),
+                      label: 'Main Routes',
+                      icon: Icons.directions_bus,
+                      onSelected: onFilterSelected,
+                      filterCriteria: 'mainRoutes'),
                   SizedBox(width: 8),
                   FilterChipWidget(
-                      label: 'Highway Routes', icon: Icons.alt_route),
+                      label: 'Highway Routes',
+                      icon: Icons.alt_route,
+                      onSelected: onFilterSelected,
+                      filterCriteria: 'highwayRoutes'),
                   SizedBox(width: 8),
                   FilterChipWidget(
-                      label: 'Short Routes', icon: Icons.location_on),
+                      label: 'Short Routes',
+                      icon: Icons.location_on,
+                      onSelected: onFilterSelected,
+                      filterCriteria: 'shortRoutes'),
                   SizedBox(width: 8),
                 ],
               ),
@@ -85,10 +172,25 @@ class PopularRouteDetailsScreen extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: routes.length,
+              itemCount: filteredRoutes.length,
               itemBuilder: (context, index) {
-                return RouteCard(
-                  route: routes[index],
+                final route = filteredRoutes[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RouteDetailsScreen(
+                          title: route['title'],
+                          image: route['image'],
+                          price: route['price'],
+                          location: route['location'],
+                          rating: route['rating'],
+                        ),
+                      ),
+                    );
+                  },
+                  child: RouteCard(route: route),
                 );
               },
             ),
@@ -96,6 +198,8 @@ class PopularRouteDetailsScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         items: const [
@@ -124,20 +228,29 @@ class PopularRouteDetailsScreen extends StatelessWidget {
 class FilterChipWidget extends StatelessWidget {
   final String label;
   final IconData icon;
+  final Function(String) onSelected;
+  final String filterCriteria;
 
-  const FilterChipWidget({super.key, required this.label, required this.icon});
+  const FilterChipWidget({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.onSelected,
+    required this.filterCriteria,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Row(
-        children: [
-          Icon(icon, size: 16),
-          const SizedBox(width: 5),
-          Text(label),
-        ],
+    return GestureDetector(
+      onTap: () => onSelected(filterCriteria),
+      child: Chip(
+        avatar: Icon(icon, size: 20.0, color: Colors.black54),
+        label: Text(label),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
       ),
-      selected: false,
     );
   }
 }

@@ -1,8 +1,56 @@
 import 'package:bus_booking_app/AnnouncementScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
+import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
+import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
+
+import 'package:bus_booking_app/home.dart';
+import 'package:bus_booking_app/notification_panel.dart';
+import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
+import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
 import 'package:flutter/material.dart';
 
-class BusTimetableScreen extends StatelessWidget {
+class BusTimetableScreen extends StatefulWidget {
   const BusTimetableScreen({super.key});
+
+  @override
+  _BusTimetableScreenState createState() => _BusTimetableScreenState();
+}
+
+class _BusTimetableScreenState extends State<BusTimetableScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BusTimetableScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NoTicketsScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PopularRouteDetailsScreen()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnnouncementScreen()),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,31 +79,40 @@ class BusTimetableScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 20),
-                          const Center(
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 30,
-                                  backgroundImage:
-                                      AssetImage('assets/images/round_dp.png'),
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Hey Kamal',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                              );
+                            },
+                            child: const Center(
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 30,
+                                    backgroundImage: AssetImage(
+                                        'assets/images/round_dp.png'),
                                   ),
-                                ),
-                                Text(
-                                  'Where you want go?',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey,
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'Hey Kamal',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Where you want go?',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -192,7 +249,14 @@ class BusTimetableScreen extends StatelessWidget {
                           const SizedBox(height: 16),
                           Center(
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SearchResultsScreen()),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 backgroundColor: Colors.blue,
@@ -217,44 +281,21 @@ class BusTimetableScreen extends StatelessWidget {
                       height: 400, // Adjust height as needed
                       child: ListView(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 90,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade200,
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        NotificationPanelScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Container(
-                                margin: const EdgeInsets.all(15.0),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/news_alert.png',
-                                    width: 68,
-                                    height: 68,
-                                  ),
-                                  title: const Padding(
-                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
-                                    child: Text('News Alerts',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 90,
-                              decoration: BoxDecoration(
+                                height: 90,
+                                decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(16),
                                   boxShadow: [
@@ -263,56 +304,200 @@ class BusTimetableScreen extends StatelessWidget {
                                       spreadRadius: 2,
                                       blurRadius: 5,
                                     ),
-                                  ]),
-                              child: Container(
-                                margin: const EdgeInsets.all(15.0),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/bus_fares.png',
-                                    // color: Colors.orange,
-                                    width: 68,
-                                    height: 68,
-                                  ),
-                                  title: const Padding(
-                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
-                                    child: Text(
-                                      'Bus Fares',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/news_alert.png',
+                                      width: 68,
+                                      height: 68,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('News Alerts',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 90,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade200,
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        PopularRouteDetailsScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Container(
-                                margin: const EdgeInsets.all(15.0),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/support_desk.png',
-                                    width: 68,
-                                    height: 68,
-                                  ),
-                                  title: const Padding(
-                                    padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
-                                    child: Text('Support Desk',
+                                height: 90,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(16),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade200,
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                      ),
+                                    ]),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/bus_fares.png',
+                                      // color: Colors.orange,
+                                      width: 68,
+                                      height: 68,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text(
+                                        'Bus Fares',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.w500)),
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AnnouncementScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/support_desk.png',
+                                      width: 68,
+                                      height: 68,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('Support Desk',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          // New Card Below Support Desk
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ActiveAlarmScreen()),
+                              );
+                              // Add your navigation or action here
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: ListTile(
+                                    leading: Icon(
+                                      Icons.directions_bus,
+                                      size: 68,
+                                      color: Colors.blue,
+                                    ),
+                                    title: const Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('Track Bus',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SampleRoutePage()),
+                              );
+                              // Add your navigation or action here
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  child: const ListTile(
+                                    leading: Icon(
+                                      Icons.chair_alt_outlined,
+                                      size: 68,
+                                      color: Colors.amber,
+                                    ),
+                                    title: Padding(
+                                      padding: EdgeInsets.fromLTRB(60, 8, 0, 0),
+                                      child: Text('Book a Seat',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -329,17 +514,10 @@ class BusTimetableScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // Set to the active tab
-        onTap: (index) {
-          if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AnnouncementScreen(),
-              ),
-            );
-          }
-        },
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -358,8 +536,6 @@ class BusTimetableScreen extends StatelessWidget {
             label: 'Help',
           ),
         ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
       ),
     );
   }

@@ -1,12 +1,11 @@
 import 'package:bus_booking_app/bus_tracking_feature/active_alarm.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
-import 'package:bus_booking_app/bus_tracking_feature/popular_routes.dart';
+
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
-import 'package:bus_booking_app/bus_tracking_feature/search_results.dart';
 
 import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
+import 'package:bus_booking_app/general_screens/bus_onboarding_screens.dart';
 
-import 'package:bus_booking_app/elevator_screen.dart';
 import 'package:bus_booking_app/notification_panel_screen.dart';
 
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
@@ -14,6 +13,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bus_booking_app/AnnouncementScreen.dart'; // Import the AnnouncementScreen
 import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
+import 'package:bus_booking_app/general_screens/app_splash_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -62,10 +62,15 @@ class HomeScreen extends StatelessWidget {
             children: [
               Image.asset('assets/images/Bus_App_Logo_3.png'),
               Text(
-                'Welcome!',
-                style: Theme.of(context).textTheme.displaySmall,
+                'BGLK',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
               ),
               const SignOutButton(),
+              SizedBox(height: 80),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -74,97 +79,10 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => BusTimetableScreen()),
                   );
                 },
-                child: Text('Bus Timetable'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SearchResultsScreen()),
-                  );
-                },
-                child: Text('Bus Search Results'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ActiveAlarmScreen()),
-                  );
-                },
-                child: const Text('Active Alarm Section'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CustomizeAlarmScreen()),
-                  );
-                },
-                child: Text('Customize Alarm'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PopularRouteDetailsScreen()),
-                  );
-                },
-                child: Text('Popular Routes'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RouteDetailsScreen()),
-                  );
-                },
-                child: Text('Route Details'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ElevatorScreen()),
-                  );
-                },
-                child: Text('Go to Elevator'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            AnnouncementScreen()), // Navigate to AnnouncementScreen
-                  );
-                },
-                child: Text('Missing Items'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            NotificationPanelScreen()), // Navigate to Notification Panel
-                  );
-                },
-                child: Text('Go to Notifications'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ScheduleRoutePage()),
-                  );
-                },
-                child: const Text('Bus seat booking'),
+
+                child: Text('Explore'),
+
+
               ),
             ],
           ),
