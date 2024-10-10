@@ -57,7 +57,7 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/mapbg.png',
+              'assets/images/mapbg_new.png',
               fit: BoxFit.cover,
             ),
           ),

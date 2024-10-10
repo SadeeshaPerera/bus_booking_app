@@ -19,19 +19,33 @@ class RouteDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue[900],
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title:
+            const Text('Route Details', style: TextStyle(color: Colors.white)),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: CircleAvatar(
+              backgroundImage: Image.asset('assets/images/round_dp.png').image,
+            ),
+          ),
+        ],
+      ),
       body: Stack(
         children: [
-          // Map in the background (placeholder for now)
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/mapbg_new.png', // Replace with your image path
+              fit: BoxFit.cover,
             ),
-            // child: Image.asset(
-            //   'assets/images/mapbg.png',
-            //   fit: BoxFit.cover,
-            //   height: double.infinity,
-            //   width: double.infinity,
-            // ),
           ),
 
           // Foreground content
@@ -39,51 +53,6 @@ class RouteDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: SizedBox(
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.blue[900],
-                            borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(20.0),
-                              bottomRight: Radius.circular(20.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.arrow_back),
-                                color: Colors.white,
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              const Text(
-                                'Route Details',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const Spacer(),
-                              CircleAvatar(
-                                backgroundImage:
-                                    Image.asset('assets/images/round_dp.png')
-                                        .image,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 const Spacer(),
                 // Card for route details
                 Padding(
