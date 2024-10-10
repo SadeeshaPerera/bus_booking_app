@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart'; // For formatting dates
 import 'select_passengers_page.dart'; // Import the page to navigate to
+import 'package:bus_booking_app/t-2-bus-booking-feature/models/scheduleroute.dart'; // Import your model class
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatePickerPage extends StatefulWidget {
-  final DateTime routeDepartureTime; // Pass the route's departure time when navigating
+  final String routeId; // Route ID passed from the previous page
+  final double seatPrice; // Seat price passed from the previous page
 
-  DatePickerPage({required this.routeDepartureTime});
+  DatePickerPage({
+    required this.routeId,
+    required this.seatPrice,
+  });
 
   @override
   _DatePickerPageState createState() => _DatePickerPageState();
@@ -29,7 +35,11 @@ class _DatePickerPageState extends State<DatePickerPage> {
                 bottom: Radius.circular(25), // Rounded bottom corners
               ),
             ),
-            padding: EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 20), // Adjust top padding for status bar space
+            padding: EdgeInsets.only(
+                top: 50,
+                left: 20,
+                right: 20,
+                bottom: 20), // Adjust top padding for status bar space
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -68,7 +78,8 @@ class _DatePickerPageState extends State<DatePickerPage> {
                     onDaySelected: (selectedDay, focusedDay) {
                       if (!_isDateAvailable(selectedDay)) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Selected date is not available!")),
+                          SnackBar(
+                              content: Text("Selected date is not available!")),
                         );
                         return;
                       }
@@ -107,17 +118,20 @@ class _DatePickerPageState extends State<DatePickerPage> {
                   SizedBox(height: 20), // Spacer for better layout
                   if (_selectedDay != null)
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 16), // Only top and bottom padding
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16), // Only top and bottom padding
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
                         border: Border.all(
-                          color: Colors.black.withOpacity(0.3), // Set the border color
+                          color: Colors.black
+                              .withOpacity(0.3), // Set the border color
                           width: 2, // Set the border width
                         ),
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center, // Center the content
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // Center the content
                         children: [
                           Image.asset(
                             'assets/images/calendar.png', // Path to your calendar icon
@@ -143,11 +157,17 @@ class _DatePickerPageState extends State<DatePickerPage> {
                             // Add your logic to store selected date in booking collection
                             print("Selected Date: $_selectedDay");
 
-                            // Navigate to the next page (e.g. SelectPassengersPage)
+                            // Navigate to the next page and pass seatPrice and routeId
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SelectPassengersPage(selectedDate: _selectedDay!),
+                                builder: (context) => SelectPassengersPage(
+                                  selectedDate: _selectedDay!,
+                                  routeId: widget
+                                      .routeId, // Pass routeId to next page
+                                  seatPrice: widget
+                                      .seatPrice, // Pass seatPrice to next page
+                                ),
                               ),
                             );
                           } else {
@@ -158,10 +178,12 @@ class _DatePickerPageState extends State<DatePickerPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF5669FF), // Button color
-                          shadowColor: Colors.black.withOpacity(0.2), // Subtle shadow
+                          shadowColor:
+                              Colors.black.withOpacity(0.2), // Subtle shadow
                           elevation: 8, // Button elevation for depth
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40), // Match rounded edges
+                            borderRadius: BorderRadius.circular(
+                                40), // Match rounded edges
                           ),
                         ),
                         child: Text(
@@ -170,7 +192,8 @@ class _DatePickerPageState extends State<DatePickerPage> {
                             color: Colors.white, // White text color
                             fontWeight: FontWeight.bold, // Bold font
                             fontSize: 16, // Text size
-                            letterSpacing: 2, // Spacing between letters to match style
+                            letterSpacing:
+                                2, // Spacing between letters to match style
                           ),
                         ),
                       ),
@@ -187,14 +210,13 @@ class _DatePickerPageState extends State<DatePickerPage> {
 
   bool _isDateAvailable(DateTime date) {
     DateTime now = DateTime.now();
-    if (date.isBefore(now)) return false;
-    if (isSameDay(date, now) && now.hour >= widget.routeDepartureTime.hour) return false;
-    return true; // The date is available
+    return !date.isBefore(now); // Ensure date is not in the past
   }
 
   String _getDaySuffix(String day) {
     int dayNumber = int.parse(day);
-    if (dayNumber >= 11 && dayNumber <= 13) return "th"; // Special case for 11, 12, 13
+    if (dayNumber >= 11 && dayNumber <= 13)
+      return "th"; // Special case for 11, 12, 13
     switch (dayNumber % 10) {
       case 1:
         return "st";

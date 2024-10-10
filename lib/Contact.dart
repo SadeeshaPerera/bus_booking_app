@@ -6,24 +6,43 @@ class ContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue[700],
-        title: const Text('Contact'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/round_dp.png'), // Replace with your image asset
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(90.0), // Adjust height as needed
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)), // Rounded corners
+          child: AppBar(
+            backgroundColor: Color(0xFF4A43EC), // Blue background for the AppBar
+            foregroundColor: Colors.white,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 20.0), // Adjust left and top padding for the back button
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context); // Navigate back
+                },
+              ),
             ),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 20.0), // Adjust top padding for the title
+              child: const Text(
+                'Contact',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ), 
+              ),
+            ),
+            centerTitle: true, // Center the title
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0, top: 20.0), // Adjust right and top padding for the avatar
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/round_dp.png'), // Profile image
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
       body: SingleChildScrollView( // Allow scrolling if content is too long
         child: Padding(
@@ -103,7 +122,8 @@ class ContactScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0xFF5669FF), // Set the button color
+                  foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -142,7 +162,8 @@ class ContactScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0xFF5669FF), // Set the button color
+                  foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -160,51 +181,50 @@ class ContactScreen extends StatelessWidget {
   }
 
   Widget _buildBusCompanyContactContainer() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Bus Company:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          const Text('Phone: 0114563787'),
-          const Text('Email: busguide@gmail.com'),
-          const Text('Operating Hours: 6:00am - 8:00pm'),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: const Text(
-                  'CALL',
-                  style: TextStyle(color: Colors.white),
-                ),
+  return Container(
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.2),
+          spreadRadius: 2,
+          blurRadius: 6,
+          offset: const Offset(0, 2),
+        ),
+      ],
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Bus Company:',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        const Text('Phone: 0114563787'),
+        const Text('Email: busguide@gmail.com'),
+        const Text('Operating Hours: 6:00am - 8:00pm'),
+        const SizedBox(height: 8),
+        Center( // Center the button
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF5669FF), // Set the button color
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-            ],
+            ),
+            child: const Text(
+              'CALL',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
+
 }

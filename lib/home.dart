@@ -79,7 +79,10 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => BusTimetableScreen()),
                   );
                 },
+
                 child: Text('Explore'),
+
+
               ),
             ],
           ),
