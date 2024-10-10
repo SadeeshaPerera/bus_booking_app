@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -264,7 +265,7 @@ class _ActiveAlarmScreenState extends State<ActiveAlarmScreen> {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => BusTimetableScreen()),
               );
               break;
             case 1:

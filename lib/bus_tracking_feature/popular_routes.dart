@@ -1,4 +1,5 @@
 import 'package:bus_booking_app/AnnouncementScreen.dart';
+import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/route_details.dart';
 import 'package:bus_booking_app/home.dart';
 import 'package:bus_booking_app/t-2-bus-booking-feature/no_ticket_screen.dart';
@@ -23,7 +24,7 @@ class _PopularRouteDetailsScreenState extends State<PopularRouteDetailsScreen> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => BusTimetableScreen()),
         );
         break;
       case 1:

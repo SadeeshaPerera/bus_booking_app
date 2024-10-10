@@ -28,7 +28,7 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => BusTimetableScreen()),
         );
         break;
       case 1:

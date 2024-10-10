@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/bus_tracking_feature/bus_time_table_screen.dart';
 import 'package:bus_booking_app/bus_tracking_feature/customize_alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_booking_app/home.dart';
@@ -222,7 +223,8 @@ class _TriggerAlarmScreenState extends State<TriggerAlarmScreen> {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const BusTimetableScreen()),
               );
               break;
             case 1:
