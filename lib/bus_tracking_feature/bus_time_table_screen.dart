@@ -19,6 +19,7 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
   int _selectedIndex = 0;
   String _selectedLocation = 'Colombo Fort';
   String _selectedDestination = 'Pettah';
+  String _selectedDate = 'Today';
 
   List<String> busStops = [
     'Colombo Fort',
@@ -276,15 +277,15 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                                 right: 15, // Adjust the position as needed
                                 child: CircleAvatar(
                                   radius: 20,
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Colors.white,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.arrow_downward_outlined,
-                                          color: Colors.white, size: 16),
+                                          color: Colors.blue, size: 16),
                                       SizedBox(width: 1),
                                       Icon(Icons.arrow_upward_outlined,
-                                          color: Colors.white, size: 16),
+                                          color: Colors.blue, size: 16),
                                     ],
                                   ),
                                 ),
@@ -294,11 +295,33 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                           const SizedBox(height: 12),
                           Row(
                             children: [
-                              const ChoiceChip(
-                                  label: Text('Today'), selected: true),
+                              ChoiceChip(
+                                label: Text('Today'),
+                                selected: _selectedDate == 'Today',
+                                selectedColor: const Color.fromARGB(
+                                    255,
+                                    224,
+                                    240,
+                                    253), // Specific color for selected chip
+                                onSelected: (bool selected) {
+                                  setState(() {
+                                    _selectedDate = 'Today';
+                                  });
+                                },
+                              ),
                               const SizedBox(width: 8),
-                              const ChoiceChip(
-                                  label: Text('Tomorrow'), selected: false),
+                              ChoiceChip(
+                                label: Text('Tomorrow'),
+                                selected: _selectedDate == 'Tomorrow',
+                                selectedColor:
+                                    const Color.fromARGB(255, 224, 240, 253),
+                                // Specific color for selected chip
+                                onSelected: (bool selected) {
+                                  setState(() {
+                                    _selectedDate = 'Tomorrow';
+                                  });
+                                },
+                              ),
                               const SizedBox(width: 8),
                               GestureDetector(
                                 onTap: () async {
@@ -309,14 +332,16 @@ class _BusTimetableScreenState extends State<BusTimetableScreen> {
                                     lastDate: DateTime(2101),
                                   );
                                   if (selectedDate != null) {
-                                    // Handle the selected date
-                                    // print('Selected date: $selectedDate');
+                                    setState(() {
+                                      _selectedDate = 'Other';
+                                    });
                                   }
                                 },
-                                child: const ChoiceChip(
+                                child: ChoiceChip(
                                   label: Text('Other'),
-                                  selected: false,
-                                  avatar: Icon(Icons.calendar_today, size: 20),
+                                  selected: _selectedDate == 'Other',
+                                  selectedColor: Colors
+                                      .blue, // Specific color for selected chip
                                 ),
                               ),
                             ],
