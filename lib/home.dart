@@ -1,7 +1,11 @@
-// lib/home.dart
+import 'package:bus_booking_app/elevator_screen.dart';
+import 'package:bus_booking_app/notification_panel_screen.dart';
 import 'package:bus_booking_app/search_results.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:bus_booking_app/AnnouncementScreen.dart'; // Import the AnnouncementScreen
+import 'package:bus_booking_app/t-2-bus-booking-feature/pages/sample_route_page.dart';
+import 'package:bus_booking_app/general_screens/app_splash_screen.dart';
 import 'package:bus_booking_app/BusTimeTableScreen.dart';
 import 'package:bus_booking_app/elevator_screen.dart'; // Ensure this import is present
 import 'package:bus_booking_app/notification_panel.dart'; // Add this import
@@ -47,52 +51,50 @@ class HomeScreen extends StatelessWidget {
         ],
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome!',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SignOutButton(),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BusTimetableScreen()),
-                );
-              },
-              child: Text('Bus Timetable'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchResultsScreen()),
-                );
-              },
-              child: Text('Bus Search Results'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ElevatorScreen()), // This should work now
-                );
-              },
-              child: Text('Go to Elevator'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NotificationPanelScreen()), // This should work now
-                );
-              },
-              child: Text('Go to Notifications'),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/Bus_App_Logo_3.png'),
+              Text(
+                'BGLK',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              ),
+              const SignOutButton(),
+              SizedBox(height: 80),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BusTimetableScreen()),
+                  );
+                },
+                child: Card(
+                  margin: const EdgeInsets.all(16),
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Explore',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
