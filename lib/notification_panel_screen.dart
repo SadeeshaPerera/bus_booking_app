@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'notification_detail_screen.dart'; // Import for NotificationDetailScreen
 import 'critical_notification_screen.dart'; // Import for CriticalNotificationScreen
+import 'notification_settings_screen.dart'; // Import for NotificationSettingsScreen (create this screen)
 
 class NotificationPanelScreen extends StatelessWidget {
   @override
@@ -62,22 +63,44 @@ class NotificationPanelScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CriticalNotificationScreen(),
+            child: Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CriticalNotificationScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  child: Text('Critical Notification'),
                 ),
-              ),
-              child: Text('Critical Notification'),
+                SizedBox(height: 10), // Add space between buttons
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationSettingsScreen(), // Navigate to settings screen
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Different color for settings button
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text('Notification Settings'),
+                ),
+              ],
             ),
           ),
         ],

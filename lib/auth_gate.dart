@@ -1,12 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart'; // new
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+import 'home.dart'; // Regular user home screen
+import 'admin_screen.dart'; // Admin screen for managing notifications
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
+
+  // Example callback function to handle adding notifications
+  void addNotification(String title, String subtitle, String icon, String time) {
+    // Logic to handle adding notifications
+    print("Notification added: $title, $subtitle, $icon, $time");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class AuthGate extends StatelessWidget {
           return SignInScreen(
             providers: [
               EmailAuthProvider(),
-              GoogleProvider(clientId: "YOUR_WEBCLIENT_ID"), // new
+              GoogleProvider(clientId: "YOUR_WEBCLIENT_ID"), // Update this with your actual web client ID
             ],
             headerBuilder: (context, constraints, shrinkOffset) {
               return Padding(
@@ -57,6 +64,14 @@ class AuthGate extends StatelessWidget {
           );
         }
 
+        // Check if the logged-in user is an admin
+        final User? user = snapshot.data;
+        if (user != null && user.email == 'admin@bus.com') {
+          // Redirect to AdminScreen if the logged-in user is the admin
+          return AdminScreen(addNotificationCallback: addNotification); // Pass the callback here
+        }
+
+        // Redirect regular users to the HomeScreen
         return const HomeScreen();
       },
     );
