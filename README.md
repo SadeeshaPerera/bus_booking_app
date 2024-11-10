@@ -1,9 +1,17 @@
 # BGLK -- Bus Booking Application 
 
 <h3>🔰 Demo Video : https://youtu.be/DwPL5LmwvXI?si=Rq38S2UF9OuObj8Q </h3>
-This is a mobile application designed to streamline the process of booking a desired bus option.
+<h3>📱 Prototype on Behance : https://www.behance.net/gallery/210901325/Bus-Guide-LK-App-Prototype </h3>
+<p align="center">
+<a href="https://ibb.co/xmr1wsq"><img src="https://i.ibb.co/pWkfNPj/UEE-Demo.jpg" alt="UEE-Demo" border="0"></a>
+</p>   
+
+
+
 
 ## Main Features
+This is a mobile application designed to streamline the process of booking a desired bus.
+
 1.  Bus Schedule and Tracking Feature
 2.  Bus Booking Feature
 3.  Bus Help and Safety Feature
