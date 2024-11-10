@@ -1,7 +1,7 @@
 # BGLK -- Bus Booking Application 
 
-<h3>🔰 Demo Video : https://youtu.be/DwPL5LmwvXI?si=Rq38S2UF9OuObj8Q </h3>
-<h3>📱 Prototype on Behance : https://www.behance.net/gallery/210901325/Bus-Guide-LK-App-Prototype </h3>
+<h4>🔰 Demo Video : https://youtu.be/DwPL5LmwvXI?si=Rq38S2UF9OuObj8Q </h4>
+<h4>📱 Prototype on Behance : https://www.behance.net/gallery/210901325/Bus-Guide-LK-App-Prototype </h4>
 <p align="center">
 <a href="https://ibb.co/xmr1wsq"><img src="https://i.ibb.co/pWkfNPj/UEE-Demo.jpg" alt="UEE-Demo" border="0"></a>
 </p>   
